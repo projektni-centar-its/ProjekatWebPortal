@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ProjekatWebPortal.Models;
 
 namespace ProjekatWebPortal.Data
 {
@@ -10,5 +11,6 @@ namespace ProjekatWebPortal.Data
             : base(options)
         {
         }
+        public DbSet<ApplicationUser> users { get; set; }
     }
 }
