@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjekatWebPortal.Models
 {
@@ -17,5 +18,15 @@ namespace ProjekatWebPortal.Models
         //naziv role korisnika se nalazi i u samoj user tabeli, jer nasa logika za jednog korisnika definise jednu rolu.
         //Ako se logika ikada bude menjala, moze se dodati metoda getRoles() koja vraca sve role u kojima je korisnik
         public string Role { get; set; }
+
+        //U konstruktoru se stringovi setuju na prazan string da ne bi bili null. Kasnije ce se sve setovati pri kreiranju i ovo nece biti potrebno.
+        public ApplicationUser()
+        {
+            this.FirstName = "";
+            this.LastName = "";
+            this.ImagePath = "";
+            this.Role = "";
+        }
+
     }
 }
