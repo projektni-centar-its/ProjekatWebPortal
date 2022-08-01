@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+// Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjekatWebPortal.Data;
 using ProjekatWebPortal.Models;
@@ -11,9 +12,26 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
+    options => {
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+
+})
+    .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+//.AddRazorPagesOptions(o =>
+//{
+//    o.Conventions.ConfigureFilter(new Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute());
+//}); ;
+
+
 
 var app = builder.Build();
 
@@ -39,7 +57,9 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=redirectToLogin}/{id?}"
+    );
 app.MapRazorPages();
+
 
 app.Run();

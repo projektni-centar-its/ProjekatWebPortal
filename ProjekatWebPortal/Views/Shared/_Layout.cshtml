@@ -1,50 +1,513 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc
+
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProjekatWebPortal</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ProjekatWebPortal.styles.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Web Portal</title>
+
+
+
+    @*
+        ////// Optimizacija, kasnije, mozda
+        <link href="@Url.Content("~/Content/css")" rel="stylesheet" />
+    *@
+
+    @*
+        @Styles.Render("~/Content/css")
+    *@
+    <link rel="stylesheet" href="~/Content/css/reset.css" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap-flatly.css" />
+    <link rel="stylesheet" href="~/Content/css/Site.css" />
+    <link rel="stylesheet" href="~/Content/css/datatables.min.css" />
+    <link rel="stylesheet" href="~/Content/css/izgled.css" />
+    <link rel="stylesheet" href="~/Content/css/stil.css" />
+    <link rel="stylesheet" href="/Content/css/simplebar.css" />
+    <link rel="stylesheet" href="~/Content/css/detaljiKorisnika.css" />
+    <link rel="stylesheet" href="~/Content/css/izmeniKorisnika.css" />
+    <link rel="stylesheet" href="~/Content/css/naprednaPretraga.css" />
+    <link rel="stylesheet" href="~/Content/css/UrednikOdgovor.css" />
+
+    @*
+        @Styles.Render("~/Content/css/select2.min.css")
+        @Styles.Render("~/Content/css/select2izgled.css")
+        @Styles.Render("~/Content/css/simplebar.css")
+    *@
+
+    <link rel="stylesheet" href="/Content/css/select2.min.css" />
+    <link rel="stylesheet" href="/Content/css/select2izgled.css" />
+    <link rel="stylesheet" href="/Content/css/simplebar.css" />
+
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>
+    @*CDN za simplebar*@
 </head>
+
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProjekatWebPortal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                @Html.ActionLink("Web portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Postavljanje materijala", "UploadMaterijal", "UploadMaterijal")</li>
+                    <li>@Html.ActionLink("Preuzimanje materijala", "MaterijaliPrikaz", "UploadMaterijal")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        </div>*@
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - ProjekatWebPortal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div id="hamburger-menu-toggle" class="hamburger-menu-toggle-otvoren" style="border: 10px solid green"> <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+            <div class="bar bar-top"></div>
+            <div class="bar bar-middle"></div>
+            <div class="bar bar-bottom"></div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+        <div class="LeftBar">
+
+            @*{Html.re("LoggedUserData", "Account");}
+            *@
+            <!--KRUZNI PORTAL SA SLIKOM KORISNIKA-->
+            @*await Component.InvokeAsync("LoggedUserData")*@
+
+
+
+            <!-- Ovde su one levo sto stoje u listi ovo stoji ovde samo da bi mogo da nadjem de pocinje, zato je ovako dugacko -->
+            @if (this.User.IsInRole("SuperAdministrator") || User.IsInRole("Administrator"))
+            {
+
+                <ul class="ListaNav" id="n1">
+
+                    <li class="naslov">
+                        <div id="Cikica" class="slikaOdNaslova">
+                            <img src="~/Content/img/cikica.png" alt="slika1" />
+                        </div>
+                        <p>Korisnici</p>
+                    </li>
+                    <li class="blok">
+                        <a href="@Url.Action("Register", "Account")">
+                            <div class="slikaLi">
+                                <img src="~/Content/img/plusSivi.png" alt="slika1" style="width: 24px; height: 24px;" />
+                            </div>
+                            <p id="l1">Novi korisnik</p>
+                        </a>
+                    </li>
+                    <li class="blok">
+                        <a href="@Url.Action("ListaKorisnika", "Account")">
+                            <div class="slikaLi">
+                                <img src="~/Content/img/lupa.png" alt="slika1" />
+                            </div>
+                            <p id="l2">Pretraga korisnika</p>
+                        </a>
+                    </li>
+                </ul>
+            }
+
+            <ul class="ListaNav" id="n2">
+                <li class="naslov">
+                    <div id="Materijali" class="slikaOdNaslova">
+                        <img src="~/Content/img/mat.png" alt="slika1" />
+                    </div>
+                    <p>Materijali</p>
+                </li>
+                @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
+                {
+                    <li class="blok">
+                        <a href="@Url.Action("UploadMaterijal", "Materijal")">
+                            <div class="slikaLi">
+                                <img src="~/Content/img/novimaterijal.png" height=28 width="27" alt="slika1" />
+                            </div>
+                            <p id="l9">Novi materijal</p>
+                        </a>
+                    </li>
+                    if (!this.User.IsInRole("Profesor"))
+                    {
+                        <li class="blok">
+                            <a href="@Url.Action("MaterijaliCekanje", "Materijal")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/Agenda_Book_Schedule-512.png" height=28 width="27" alt="slika1" />
+                                </div>
+                                <p id="20">Materijali na cekanju</p>
+                            </a>
+                        </li>
+                    }
+                    if (!this.User.IsInRole("LokalniUrednik"))
+                    {
+                        <li class="blok">
+                            <a href="@Url.Action("UrednikOdgovor", "Materijal")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/book.png" height="28" width="27" alt="slika1" />
+                                </div>
+                                <p id="21">Urednik-odgovor</p>
+                            </a>
+                        </li>
+                    }
+
+                    <li class="blok">
+
+                        <a href="@Url.RouteUrl("MaterijaliZaProf")">
+                            <div class="slikaLi">
+                                <img src="~/Content/img/profesor.png" alt="slika1" />
+                            </div>
+                            <p id="l3">Obuka profesora</p>
+                        </a>
+                    </li>
+                }
+
+                <li class="blok">
+                    <a href="@Url.Action("SkolaPrikaz", "Skola")">
+                        <div class="slikaLi">
+                            <img src="~/Content/img/ucenik.png" alt="slika1" />
+                        </div>
+                        <p id="l4">Nastavni materijal</p>
+                    </a>
+                </li>
+                <li class="blok">
+                    <a href="@Url.Action("PredmetiPrikaz", "Globalni")">
+                        <div class="slikaLi">
+                            <img src="~/Content/img/ucenik.png" alt="slika1" />
+                        </div>
+                        <p id="14">Globalni materijal</p>
+                    </a>
+                </li>
+                @if (this.User.IsInRole("GlobalniUrednik") || this.User.IsInRole("LokalniUrednik"))
+                {
+                    <li class="blok">
+                        <a href="@Url.Action("PrikazZahteva", "Zahtev")">
+                            <div class="slikaLi">
+                                <img src="~/Content/img/Agenda_Book_Schedule-512.png" height=28 width="27" alt="slika1" />
+                            </div>
+                            <p id="50">Globalni zahtevi</p>
+                        </a>
+                    </li>
+                }
+            </ul>
+            @if (!this.User.IsInRole("Ucenik") && !this.User.IsInRole("GlobalniUrednik"))
+            {
+                <ul class="ListaNav">
+                    <!-- SVE OSTALE su id="1,2,3" PREFORMULISI
+            <ul class="ListaNav" > <!-- SVE OSTALE su id="1,2,3" PREFORMULISI -->
+                    <li class="naslov">
+                        <div id="Novine" class="slikaOdNaslova">
+                            <img src="~/Content/img/Organizacija.png" alt="slika1" style="width: 24px; height: 24px;" />
+                        </div>
+                        <p id="vestiP">Organizacija</p> <!-- POGLEDAJ ID!-->
+                    </li>
+
+                    @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("Profesor") || this.User.IsInRole("Administrator"))
+                    {
+
+                        <li class="blok">
+                            <a href="@Url.Action("planNastave", "Organizacija")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/plan-nastave.png" alt="slika1" height="28" width="27" />
+                                </div>
+                                <p id="22">Plan nastave</p>
+                            </a>
+                        </li>
+                        if (this.User.IsInRole("LokalniUrednik"))
+                        {
+                            <li class="blok">
+                                <a href="@Url.Action("dodavanjeNastave", "Organizacija")">
+                                    <div class="slikaLi">
+                                        <img src="~/Content/img/folder-add-storage-file-organize-512-removebg-preview.png" alt="slika1" height="28" width="27" />
+                                    </div>
+                                    <p id="23">Dodavanje plana</p>
+                                </a>
+                            </li>
+                        }
+                    }
+
+                    @*<li class="blok">
+                    <a href="@Url.Action("kalendarNastave", "Organizacija")">
+                        <div class="slikaLi">
+                            <img src="~/Content/img/kalendar-nastave.png" alt="slika1" height="28" width="27" />
+                        </div>
+                        <p id="l1">Kalendar nastave</p>
+                    </a>
+                </li>
+
+                <li class="blok">
+                    <a href="@Url.Action("rasporedCasova", "Organizacija")">
+                        <div class="slikaLi">
+                            <img src="~/Content/img/raspored-casova.png" alt="slika1" height="28" width="27" />
+                        </div>
+                        <p id="l1">Raspored časova</p>
+                    </a>
+                </li>*@
+                </ul>
+            }
+            @if (this.User.IsInRole("Ucenik") || this.User.IsInRole("Profesor"))
+            {
+                <ul class="ListaNav" id="n3">
+                    <li class="naslov">
+                        <div id="Novine" class="slikaOdNaslova">
+                            <img src="~/Content/img/08_comment-512.png" alt="slika1" height="28" width="27" />
+                        </div>
+                        <p id="vestiP">Forum</p>
+                    </li>
+                    @if (this.User.IsInRole("Ucenik"))
+                    {
+                        <li class="blok">
+                            <a href="@Url.Action("forum", "Forum")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/14558.png" alt="slika1" height="28" width="27" />
+                                </div>
+                                <p id="23">Forum prikaz</p>
+                            </a>
+                        </li>
+                    }
+                    @if (this.User.IsInRole("Ucenik"))
+                    {
+                        <li class="blok">
+                            <a href="@Url.Action("DodavanjeTema", "Forum")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/chat_speech_bubble_communication_interaction_-_36-512.png" alt="slika1" height="28" width="27" />
+                                </div>
+                                <p id="24">Dodavanje teme</p>
+                            </a>
+                        </li>
+                    }
+                    @if (this.User.IsInRole("Profesor"))
+                    {
+                        <li class="blok">
+                            <a href="@Url.Action("OdobravanjeTema", "Forum")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/chat-bubble-circle-timeout-512.png" alt="slika1" style="width: 24px; height: 24px;" />
+                                </div>
+                                <p id="25">Odobravanje teme</p>
+                            </a>
+                        </li>
+                        <li class="blok">
+                            <a href="@Url.Action("OdobravanjeSadrzaja", "Forum")">
+                                <div class="slikaLi">
+                                    <img src="~/Content/img/icons8-reply-all-32.png" alt="slika1" style="width: 24px; height: 24px;" />
+                                </div>
+                                <p id="26">Odobravanje sadržaja</p>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+
+            <ul class="ListaNav" id="n3">
+                <li class="naslov">
+                    <div id="Novine" class="slikaOdNaslova">
+                        <img src="~/Content/img/Novine.png" alt="slika1" />
+                    </div>
+                    <p id="vestiP">Vesti </p>
+                </li>
+                <li class="blok">
+                    <a href="@Url.Action("PrikazVesti", "Vesti")">
+                        <div class="slikaLi">
+                            <img src="~/Content/img/novine-svetlije.png" alt="slika1" />
+                        </div>
+                        <p id="l5">Pregled vesti</p>
+                    </a>
+                </li>
+                @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("SuperAdministrator"))
+                {
+                    <li class="blok">
+                        <a href="@Url.Action("NovaVest", "Vesti")">
+                            <div class="slikaLi">
+                                <img id="nova-vest" src="~/Content/img/novavest.png" alt="slika1" />
+                            </div>
+                            <p id="l6">Nova vest</p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    else
+    {      
+
+        <style>
+            #gornjaNavigacija {
+                width: 100% !important;
+                margin-left: 0px !important;
+            }
+        </style>
+    }
+    <div id="gornjaNavigacija">
+
+        @if (Context.Request.Headers["Referer"].ToString().Length > 0)
+        {
+            <a id="nazad" onclick="history.go(-1); return false;" href="#"><img src="~/Content/img/back-strelica.png" alt="nazad"></a><br />
+        }
+        else
+        {
+            <a id="nazad" href="#"> </a><br />
+        }
+
+        <div class="divMapiranje">
+
+            @*Html.MvcSiteMap().SiteMapPath()*@
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <img id="gornjeOpcije" src="~/Content/img/tri-tacke.png" alt="opcije" onclick="drop()">
+
+        }
+
+        @*<img class="gornjiNavIkonice" id="lupaPretragaToggle" src="~/Content/img/lupaPretraga.png" alt="pretraga" />*@
+
+        <div id="zaPretragu">
+        </div>
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div id="dropdaun" style="display:none;margin-top:70px;position:fixed;">
+            <ul class="dd-lista">
+
+                <li class="dd">Moj Nalog</li>
+                <li class="dd">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input class="ttDugme" type="submit" value="LOG OUT" />
+                    }
+                </li>
+            </ul>
+        </div>}
+    <script>
+        var x = document.getElementById("dropdaun");
+        function drop() {
+            if (x.style.display === "none") {
+                x.style.display = "inline-block";
+            }
+
+            else {
+                x.style.display = "none";
+            }
+
+        }
+    </script>
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/UI/select2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/Scripts/UI/asc-desc-strelica.js"></script>
+    <script src="~/Scripts/UI/AutoHeightTextarea.js"></script>
+    <script src="~/Scripts/UI/breadCrumbsHardCode.js"></script>
+    <script src="~/Scripts/UI/hamburger.js"></script>
+    <script src="~/Scripts/UI/kontroleRespMaterijaliPrikaz.js"></script>
+    <script src="~/Scripts/UI/labeli.js"></script>
+    <script src="~/Scripts/UI/labeliEditPredmeta.js"></script>
+    <script src="~/Scripts/UI/lupauX.js"></script>
+    <script src="~/Scripts/UI/select2.min.js"></script>
+    <script src="~/Scripts/UI/sideBarSections.js"></script>
+    <script src="~/Scripts/UI/VracanjeID.js"></script>
+
+   
+
+    @*<script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>*@
+
+    @*
+            <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+
+        <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+        @*
+            <script type="text/javascript" src="~/Scripts/jquery-3.3.1.intellisense.js"></script>
+
+
+
+            @* <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+                <script src="~/Scripts/jquery-3.3.1.slim.js"></script>
+                <script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
+            <script type="text/javascript" src="~/Scripts/jquery-ui.min.js"></script>
+
+
+
+
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/respond.js"></script>
+        <script src="~/Scripts/Materijal/brisanjeMaterijala.js"></script>
+        <script src="~/Scripts/Materijal/filterMaterijal.js"></script>
+        <script src="~/Scripts/Zahtev/zahtevUpgrade.js"></script>
+        <script src="~/Scripts/customDropdown.js"></script>
+        @*<script src="~/Scripts/Materijal/uploadMaterijal.js"></script>
+            <script src="~/Scripts/Materijal/dropdownovi.js"></script>
+            <script src="~/Scripts/Predmet/editPredmeta.js"></script>
+            <script src="~/Scripts/Predmet/modalOpisPredmet.js"></script>
+            <script src="~/Scripts/Predmet/validacijaEditPredmeta.js"></script>
+            <script src="~/Scripts/Predmet/validacijaNovogPredmeta.js"></script>
+            <script src="~/Scripts/Predmet/smerPoSkoli.js"></script>
+
+            <script src="~/Scripts/Predmet/validacijaNovogPredmeta.js"></script>
+            <script src="~/Scripts/Predmet/smerPoSkoli.js"></script>
+            <script src="~/Scripts/Modul/validacijaNovogModula.js"></script>
+            <script src="~/Scripts//Modul/customDropdownModul.js"></script>
+            <script src="~/Scripts/Modul/validacijaEditModula.js"></script>
+            <script src="~/Scripts//Modul/customDropdownModul.js"></script>
+            <script src="~/Scripts/Smer/editSmera.js"></script>
+            <script src="~/Scripts/Smer/modalOpisSmer.js"></script>
+            <script src="~/Scripts/Smer/validacijaEditSmera.js"></script>
+            <script src="~/Scripts/Smer/validacijaNovogSmera.js"></script>
+            <script src="~/Scripts/customDropdown.js"></script>
+            <script src="~/Scripts/Korisnik/register.js"></script>
+            <script src="~/Scripts/Korisnik/customDropdownKorisnik.js"></script>
+            <script src="~/Scripts/Korisnik/customDropdown.js"></script>
+            <script src="~/Scripts/Korisnik/SakrijGodine.js"></script>
+            <script src="~/Scripts/customDropdown.js"></script>
+            <script src="~/Scripts/Korisnik/izmeniKorisnika.js"></script>
+            <script src="~/Scripts/Korisnik/SakrijGodine.js"></script>
+            <script src="~/Scripts/Zahtev/ZahtevDelete.js"></script>
+            <script src="~/Scripts/Zahtev/zahtevDropdown.js"></script>
+            <script src="~/Scripts/datatables.min.js"></script>
+            <script src="~/Scripts/Korisnik/listaKorisnika.js"></script>
+            <script src="~/Scripts/UI/select2.min.js"></script>
+            <script src="~/Scripts/customDropdown.js"></script>
+            <script src="~/Scripts/UI/labeli.js"></script>
+
+            <script src="~/Scripts/UI/asc-desc-strelica.js"></script>
+            <script src="~/Scripts/UI/AutoHeightTextarea.js"></script>
+            <script src="~/Scripts/UI/breadCrumbsHardCode.js"></script>
+            <script src="~/Scripts/UI/hamburger.js"></script>
+            <script src="~/Scripts/UI/kontroleRespMaterijaliPrikaz.js"></script>
+            <script src="~/Scripts/UI/labeli.js"></script>
+            <script src="~/Scripts/UI/labeliEditPredmeta.js"></script>
+            <script src="~/Scripts/UI/lupauX.js"></script>
+            <script src="~/Scripts/UI/select2.min.js"></script>
+            <script src="~/Scripts/UI/sideBarSections.js"></script>
+            <script src="~/Scripts/UI/VracanjeID.js"></script>
+    *@
+    @*
+        <script src="~/Scripts/umdPopper.js"></script>
+
+            <script src="wwwroot/bundles/modernizr" asp-append-version="true"></script>
+
+            @*Scripts.Render("~/bundles/modernizr")
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/Scripts/UI/select2.min.js")
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/shared")
+            @Scripts.Render("~/bundles/ui")
+    *@
+
+    @RenderBody()
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
