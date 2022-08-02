@@ -1,0 +1,90 @@
+﻿.labele {
+
+    margin-left: 9%; 
+    text-align: right; 
+    margin-right: 5%; 
+    font-family: 'roboto-light'; 
+    font-weight: lighter;
+    font-size: 17px;
+
+
+}
+.labelaIzBaze{
+  
+    text-align: left; 
+    margin-right: 32%; 
+    font-family: 'roboto-light'; 
+    font-weight: lighter;
+    font-size: 17px;
+}
+
+h4{
+     margin-left: 7%;
+     text-align: left; 
+     margin-right: 32%; 
+     font-family: 'roboto-light'; 
+     font-size: 21px;
+}
+h2{
+    text-align: left;
+    margin-right: 32%;
+    font-family: 'roboto-regular';
+    font-weight: lighter;
+}
+
+.slika{
+    width: 100%;
+    height: 400px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.form-detalji{
+    background-color: #fff;
+    width: 460px;
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 3px;
+/*-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.26);
+-moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.26);*/
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.26);
+    padding: 16px 0 40px 0;
+    margin-bottom: 10%;
+}
+table{
+   margin: 7%;
+   margin-top: 5px;
+   margin-bottom: 20px;
+}
+.kategorija{
+    width: 150px;
+    text-align: left;
+}
+td{
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+.btnsOnDetalji{
+
+    float: left; 
+    width: 20%;
+    border-bottom: none;
+    text-align: right;
+    background-image: none;
+    padding-left: 25px;
+    font-family: 'roboto-regular';
+    color: #e21b22;
+    margin-left: 3px;
+}
+.btnReset{
+    float: left; 
+    width: 57%;
+    border-bottom: none;
+    text-align: center;
+    background-image: none;
+    padding-left: 10px;
+    font-family: 'roboto-regular';
+    color: #e21b22;
+    
+}
