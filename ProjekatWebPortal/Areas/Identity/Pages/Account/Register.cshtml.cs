@@ -23,7 +23,6 @@ using ProjekatWebPortal.Models;
 
 namespace ProjekatWebPortal.Areas.Identity.Pages.Account
 {
-    [IgnoreAntiforgeryToken]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -144,7 +143,9 @@ namespace ProjekatWebPortal.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                         // action - Index
+                        // controler - Home
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 foreach (var error in result.Errors)

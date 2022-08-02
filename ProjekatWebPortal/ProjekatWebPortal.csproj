@@ -9,14 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Shared\Components\**" />
-    <Content Remove="Views\Shared\Components\**" />
-    <EmbeddedResource Remove="Views\Shared\Components\**" />
-    <None Remove="Views\Shared\Components\**" />
+    <Content Remove="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +25,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Identity\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

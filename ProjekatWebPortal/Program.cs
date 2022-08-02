@@ -23,7 +23,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
 
 })
     .AddDefaultUI()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 //.AddRazorPagesOptions(o =>

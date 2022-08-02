@@ -122,6 +122,8 @@ namespace ProjekatWebPortal.Areas.Identity.Pages.Account
                     // action - Index
                     // controler - Home
                     return RedirectToAction("Index", "Home");
+                    //return Content("HUAAAAAAA");
+
                 }
                 if (result.RequiresTwoFactor)
                 {
