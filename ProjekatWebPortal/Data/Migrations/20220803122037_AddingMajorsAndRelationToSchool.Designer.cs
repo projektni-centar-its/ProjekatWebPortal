@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjekatWebPortal.Data;
 
@@ -11,9 +12,10 @@ using ProjekatWebPortal.Data;
 namespace ProjekatWebPortal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220803122037_AddingMajorsAndRelationToSchool")]
+    partial class AddingMajorsAndRelationToSchool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,7 +210,7 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int?>("MajorId")
+                    b.Property<int>("MajorId")
                         .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")
@@ -248,8 +250,6 @@ namespace ProjekatWebPortal.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MajorId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -378,22 +378,11 @@ namespace ProjekatWebPortal.Data.Migrations
 
             modelBuilder.Entity("ProjekatWebPortal.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("ProjekatWebPortal.Models.Major", "Major")
-                        .WithMany("Students")
-                        .HasForeignKey("MajorId");
-
                     b.HasOne("ProjekatWebPortal.Models.School", "School")
                         .WithMany("Students")
                         .HasForeignKey("SchoolId");
 
-                    b.Navigation("Major");
-
                     b.Navigation("School");
-                });
-
-            modelBuilder.Entity("ProjekatWebPortal.Models.Major", b =>
-                {
-                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.School", b =>
