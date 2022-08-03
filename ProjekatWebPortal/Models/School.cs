@@ -14,5 +14,7 @@ namespace ProjekatWebPortal.Models
 
         [Required]
         public string Shortcode { get; set; }
+
+        public List<ApplicationUser> Students { get; set; }
     }
 }
