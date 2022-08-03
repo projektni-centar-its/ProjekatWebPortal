@@ -11,5 +11,6 @@ namespace ProjekatWebPortal.Data
             : base(options)
         {
         }
+        public DbSet<School> Schools { get; set; }
     }
 }
