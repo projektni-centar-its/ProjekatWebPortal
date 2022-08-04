@@ -13,5 +13,6 @@ namespace ProjekatWebPortal.Models
         public string Description { get; set; }
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
+        public IList<Material> Materials { get; set; }
     }
 }

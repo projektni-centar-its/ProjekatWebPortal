@@ -18,5 +18,6 @@ namespace ProjekatWebPortal.Models
         //naziv role korisnika se nalazi i u samoj user tabeli, jer nasa logika za jednog korisnika definise jednu rolu.
         //Ako se logika ikada bude menjala, moze se dodati metoda getRoles() koja vraca sve role u kojima je korisnik
         public string Role { get; set; }
+        public IList<Material> Materials { get; set; }
     }
 }

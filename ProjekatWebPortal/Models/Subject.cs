@@ -4,8 +4,8 @@ namespace ProjekatWebPortal.Models
 {
     public enum SubjectTypes : short
     {
-        Local = 0,
-        Global = 1
+        Lokalni = 0,
+        Globalni = 1
     }
     public class Subject
     {
