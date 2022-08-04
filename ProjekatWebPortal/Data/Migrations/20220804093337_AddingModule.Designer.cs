@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjekatWebPortal.Data;
 
@@ -11,9 +12,10 @@ using ProjekatWebPortal.Data;
 namespace ProjekatWebPortal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220804093337_AddingModule")]
+    partial class AddingModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,21 +52,6 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.HasIndex("SubjectsId");
 
                     b.ToTable("MajorSubject");
-                });
-
-            modelBuilder.Entity("MaterialModule", b =>
-                {
-                    b.Property<int>("MaterialsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ModulesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MaterialsId", "ModulesId");
-
-                    b.HasIndex("ModulesId");
-
-                    b.ToTable("MaterialModule");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -294,34 +281,6 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ProjekatWebPortal.Models.GlobalRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubjectId")
-                        .IsUnique();
-
-                    b.ToTable("GlobalRequests");
-                });
-
             modelBuilder.Entity("ProjekatWebPortal.Models.Major", b =>
                 {
                     b.Property<int>("Id")
@@ -345,50 +304,6 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Majors");
-                });
-
-            modelBuilder.Entity("ProjekatWebPortal.Models.Material", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Approved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<short>("MaterialType")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("MaterialUsage")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostedById");
-
-                    b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.Module", b =>
@@ -417,38 +332,7 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("ProjekatWebPortal.Models.News", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Body")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Headline")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsHighlight")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ThumbnailImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("News");
-                });
-
-            modelBuilder.Entity("ProjekatWebPortal.Models.OrganizationFile", b =>
+            modelBuilder.Entity("ProjekatWebPortal.Models.OrganizationFIle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -470,7 +354,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("MajorId");
 
-                    b.ToTable("OrganizationFiles");
+                    b.ToTable("OrganizationFIles");
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.School", b =>
@@ -552,21 +436,6 @@ namespace ProjekatWebPortal.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MaterialModule", b =>
-                {
-                    b.HasOne("ProjekatWebPortal.Models.Material", null)
-                        .WithMany()
-                        .HasForeignKey("MaterialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjekatWebPortal.Models.Module", null)
-                        .WithMany()
-                        .HasForeignKey("ModulesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -633,26 +502,6 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.Navigation("School");
                 });
 
-            modelBuilder.Entity("ProjekatWebPortal.Models.GlobalRequest", b =>
-                {
-                    b.HasOne("ProjekatWebPortal.Models.Subject", "Subject")
-                        .WithOne("GlobalRequest")
-                        .HasForeignKey("ProjekatWebPortal.Models.GlobalRequest", "SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("ProjekatWebPortal.Models.Material", b =>
-                {
-                    b.HasOne("ProjekatWebPortal.Models.ApplicationUser", "PostedBy")
-                        .WithMany("Materials")
-                        .HasForeignKey("PostedById");
-
-                    b.Navigation("PostedBy");
-                });
-
             modelBuilder.Entity("ProjekatWebPortal.Models.Module", b =>
                 {
                     b.HasOne("ProjekatWebPortal.Models.Subject", "Subject")
@@ -664,10 +513,10 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("ProjekatWebPortal.Models.OrganizationFile", b =>
+            modelBuilder.Entity("ProjekatWebPortal.Models.OrganizationFIle", b =>
                 {
                     b.HasOne("ProjekatWebPortal.Models.Major", "Major")
-                        .WithMany("OrganizationFiles")
+                        .WithMany("OrganizationFIles")
                         .HasForeignKey("MajorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -675,14 +524,9 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.Navigation("Major");
                 });
 
-            modelBuilder.Entity("ProjekatWebPortal.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Materials");
-                });
-
             modelBuilder.Entity("ProjekatWebPortal.Models.Major", b =>
                 {
-                    b.Navigation("OrganizationFiles");
+                    b.Navigation("OrganizationFIles");
 
                     b.Navigation("Students");
                 });
@@ -694,8 +538,6 @@ namespace ProjekatWebPortal.Data.Migrations
 
             modelBuilder.Entity("ProjekatWebPortal.Models.Subject", b =>
                 {
-                    b.Navigation("GlobalRequest");
-
                     b.Navigation("Modules");
                 });
 #pragma warning restore 612, 618
