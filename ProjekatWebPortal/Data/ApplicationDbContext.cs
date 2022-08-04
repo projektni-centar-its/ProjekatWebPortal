@@ -15,5 +15,6 @@ namespace ProjekatWebPortal.Data
         public DbSet<Major> Majors { get; set; }
         public DbSet<OrganizationFIle> OrganizationFIles { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Module> Modules { get; set; }
     }
 }
