@@ -19,6 +19,6 @@ namespace ProjekatWebPortal.Models
         public bool IsGlobal { get; set; }
         public IList<Major> Majors { get; set; }
         public IList<Module> Modules { get; set; }
-
+        public GlobalRequest GlobalRequest { get; set; }
     }
 }

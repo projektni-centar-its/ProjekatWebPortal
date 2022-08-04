@@ -17,5 +17,6 @@ namespace ProjekatWebPortal.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Material> Materials { get; set; }
+        public DbSet<GlobalRequest> GlobalRequests { get; set; }
     }
 }
