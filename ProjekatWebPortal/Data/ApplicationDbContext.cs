@@ -13,5 +13,6 @@ namespace ProjekatWebPortal.Data
         }
         public DbSet<School> Schools { get; set; }
         public DbSet<Major> Majors { get; set; }
+        public DbSet<OrganizationFIle> OrganizationFIles { get; set; }
     }
 }
