@@ -19,5 +19,6 @@ namespace ProjekatWebPortal.Models
 
         public IList<ApplicationUser> Students { get; set; }
         public IList<OrganizationFIle> OrganizationFIles { get; set; }
+        public IList<Subject> Subjects { get; set; }
     }
 }
