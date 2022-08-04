@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 namespace ProjekatWebPortal.Models
 {
-    public class OrganizationFIle
+    public class OrganizationFile
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
