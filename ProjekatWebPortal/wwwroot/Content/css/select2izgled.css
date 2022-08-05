@@ -1,0 +1,131 @@
+﻿.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    border-radius: 16px;
+    border:none;
+    padding: 5px 14px;
+}
+
+.select2-selection__choice__remove{
+    padding-right: 7px;
+    font-size: 20px;
+    line-height:1
+}
+.select2-search__field{
+    line-height:2.5;
+}
+
+#predmetForma .select2-container{
+    width: 100% !important;
+    padding: 0 70px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li{
+    list-style: none;
+    max-width: 206px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple{
+    border-bottom:2px solid #757575;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    margin-right:7px;
+}
+
+.select2-container .select2-selection--multiple{
+    height: 43px;
+}
+
+.select2-container{
+    margin-bottom: 7px;
+    margin-top:9px;
+}
+
+#predmetForma .select2-container{
+    margin-bottom: 0px
+}
+
+.select2-container--default .select2-selection--multiple{
+    height:20px;
+}
+
+.nasSelect2dropdown{
+    /*transform: translate(106%,-4px);*/
+    transform: scale(8) translate(8px, -0.5px);
+    z-index: 2;
+    font-size:2px;
+    /*font-size:16px;*/
+    font-family: 'roboto-regular';
+    color:#707070;
+    font-weight: normal;
+    letter-spacing:0.005em;
+    pointer-events: none;
+    transition: all .2s cubic-bezier(.07,.64,.07,.95);
+    width: 13px;
+    overflow: visible;
+    white-space: nowrap;
+}
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    margin-bottom: 5px;
+    height: 30px;
+
+}
+
+.select2-container--default .select2-search--inline .select2-search__field{
+    margin-top: 0;
+    height:30px;
+    margin-bottom:22px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    padding-left:0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    color: #e21b22;
+}
+
+/*SELECT2 ZA PRAVLJENJE PREDMETA POCETAK*/
+
+#predmetForma .select2-container--default .select2-selection--multiple .select2-selection__choice{
+    margin-top: 0px;
+}
+
+#predmetForma .select2-container--default.select2-container--focus .select2-selection--multiple{
+    height: 40px;
+}
+
+#predmetForma .select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    height: 33px;
+
+}
+
+#predmetForma .select2-container--default .select2-selection--multiple{
+    height:40px;
+}
+
+/*EDIT PREDMETA MODAL FORM POCETAK*/
+#editPredmeta{
+    height: 41px;
+}
+
+#editPredmeta .selection{
+    height: 48px;
+}
+
+#editPredmeta .select2-container--default .select2-selection--multiple{
+    height: 40px;
+}
+
+#editPredmeta .select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    height: 35px;
+}
+
+#editPredmeta .select2-container--default .select2-selection--multiple .select2-selection__rendered li{
+    margin-top: 0;
+}
+/*EDIT PREDMETA MODAL FORM KRAJ*/
