@@ -1,0 +1,718 @@
+[
+  // 1 - Bundle 1 START
+
+  // OG
+  //"bundles.Add(new",
+  //"ScriptBundle(\"~/bundles/jquery\").Include(", //1
+  //"~/Scripts/jquery-{version}.js"
+  //"));",
+  //,
+  // NEW
+  {
+    "inputFiles": [
+      "wwwroot/Scripts/jquery-3.3.1.js",
+      "wwwroot/Scripts/jquery-3.3.1.intellisense.js",
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    },
+    "outputFileName": "wwwroot/bundles/jquery.js"
+  },
+
+    // 1 -  Bundle 1 END
+
+    // 2 - Bundle 2 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/jqueryval\").Include(", // 2
+    //"~/Scripts/jquery.validate.min.js"
+    //"));",
+    //,
+
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/jquery.validate.min.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/jqueryval.js"
+    },
+    // 2 - Bundle 2 END
+
+    // 3 - Bundle 3 START
+
+    // OG
+
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/modernizr\").Include(", //3
+    //"~/Scripts/modernizr-*"
+    //"));",
+    //,
+
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/modernizr-2.6.2.js",
+        "wwwroot/Scripts/modernizr-2.8.3.js"
+
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/modernizr.js"
+    },
+
+    // 3 -  Bundle 3 END
+
+    // 4 - Bundle 4 START
+
+    // OG
+
+    //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include( //4
+    //                    "~/Scripts/bootstrap.js",
+    //                    //"~/Scripts/bootbox.js",
+    //                    "~/Scripts/respond.js"));
+
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/bootstrap.js",
+        "wwwroot/Scripts/respond.js"
+
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/bootstrap.js"
+    },
+
+    // 4 -  Bundle 4 END
+
+    // 5 - Bundle 5 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/materijal_prikaz\").Include(", //5
+    //"~/Scripts/Materijal/brisanjeMaterijala.js",
+    //"~/Scripts/Materijal/filterMaterijal.js",
+    //"~/Scripts/Zahtev/zahtevUpgrade.js",
+    //"~/Scripts/customDropdown.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Materijal/brisanjeMaterijala.js",
+        "wwwroot/Scripts/Materijal/filterMaterijal.js",
+        "wwwroot/Scripts/Zahtev/zahtevUpgrade.js",
+        "wwwroot/Scripts/customDropdown.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/materijal_prikaz.js"
+    },
+
+    // 5 -  Bundle 5 END
+
+    // 6 - Bundle 6 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/upload_materijal\").Include(", //6
+    //"~/Scripts/Materijal/uploadMaterijal.js",
+    //"~/Scripts/Materijal/dropdownovi.js",
+    ////"~/Scripts/Materijal/uploadMaterijal.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Materijal/uploadMaterijal.js",
+        "wwwroot/Scripts/Materijal/dropdownovi.js",
+        "wwwroot/Scripts/Materijal/uploadMaterijal.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/upload_materijal.js"
+    },
+
+    // 6 -  Bundle 6 END
+
+    // 7 - Bundle 7 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/predmet_prikaz\").Include(", //7
+    //"~/Scripts/Predmet/editPredmeta.js",
+    //"~/Scripts/Predmet/modalOpisPredmet.js",
+    //"~/Scripts/Predmet/validacijaEditPredmeta.js",
+    //"~/Scripts/Predmet/validacijaNovogPredmeta.js",
+    //"~/Scripts/Predmet/smerPoSkoli.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Predmet/editPredmeta.js",
+        "wwwroot/Scripts/Predmet/modalOpisPredmet.js",
+        "wwwroot/Scripts/Predmet/validacijaEditPredmeta.js",
+        "wwwroot/Scripts/Predmet/validacijaNovogPredmeta.js",
+        "wwwroot/Scripts/Predmet/smerPoSkoli.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/predmet_prikaz.js"
+    },
+
+    // 7 -  Bundle 7 END
+
+    // 8 - Bundle 8 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/novi_predmet\").Include(", //8
+    //"~/Scripts/Predmet/validacijaNovogPredmeta.js",
+    //"~/Scripts/Predmet/smerPoSkoli.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Predmet/validacijaNovogPredmeta.js",
+        "wwwroot/Scripts/Predmet/smerPoSkoli.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/novi_predmet.js"
+    },
+
+    // 8 -  Bundle 8 END
+
+    // 9 - Bundle 9 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/novi_modul\").Include(", //9
+    //"~/Scripts/Modul/validacijaNovogModula.js",
+    //"~/Scripts//Modul/customDropdownModul.js",
+    //"));",
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Modul/validacijaNovogModula.js",
+        "wwwroot/Scripts/Modul/customDropdownModul.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/novi_modul.js"
+    },
+    // 9 -  Bundle 9 END
+
+    // 10 - Bundle 10 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/edit_modul\").Include(", //10
+    //"~/Scripts/Modul/validacijaEditModula.js",
+    //"~/Scripts//Modul/customDropdownModul.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Modul/validacijaNovogModula.js",
+        "wwwroot/Scripts/Modul/customDropdownModul.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/edit_modul.js"
+    },
+    // 10 -  Bundle 10 END
+
+
+    // 11 - Bundle 11 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/smer_prikaz\").Include(", //11
+    //"~/Scripts/Smer/editSmera.js",
+    //"~/Scripts/Smer/modalOpisSmer.js",
+    //"~/Scripts/Smer/validacijaEditSmera.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Smer/editSmera.js",
+        "wwwroot/Scripts/Smer/modalOpisSmer.js",
+        "wwwroot/Scripts/Smer/validacijaEditSmera.js"
+
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/smer_prikaz.js"
+    },
+
+    // 11 -  Bundle 11 END
+
+    // 12 - Bundle 12 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/novi_smer\").Include(", //12
+    //"~/Scripts/Smer/validacijaNovogSmera.js",
+    //"~/Scripts/customDropdown.js",
+    //"));",
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Smer/validacijaNovogSmera.js",
+        "wwwroot/Scripts/customDropdown.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/novi_smer.js"
+    },
+
+    // 12 -  Bundle 12 END
+
+    // 13 - Bundle 13 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/novi_korisnik\").Include(", //13
+    //"~/Scripts/Korisnik/register.js",
+    //"~/Scripts/Korisnik/customDropdownKorisnik.js",
+    //"~/Scripts/Korisnik/customDropdown.js",
+    //"~/Scripts/Korisnik/SakrijGodine.js",
+
+    //"));",
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Korisnik/register.js",
+        "wwwroot/Scripts/Korisnik/customDropdownKorisnik.js",
+        "wwwroot/Scripts/Korisnik/customDropdown.js",
+        "wwwroot/Scripts/Korisnik/SakrijGodine.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/novi_korisnik.js"
+    },
+    // 13 -  Bundle 13 END
+
+    // 14 - Bundle 14 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/izmeni_korisnika\").Include(", //14
+    //"~/Scripts/customDropdown.js",
+    //"~/Scripts/Korisnik/izmeniKorisnika.js",
+    //"~/Scripts/Korisnik/SakrijGodine.js",
+    //"));",
+    // NEW
+
+    // 14 -  Bundle 14 END
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/customDropdown.js",
+        "wwwroot/Scripts/Korisnik/izmeniKorisnika.js",
+        "wwwroot/Scripts/Korisnik/SakrijGodine.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/izmeni_korisnika.js"
+    },
+
+    // 15 - Bundle 15 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/PrikazZahteva\").Include(", //15
+    //"~/Scripts/Zahtev/ZahtevDelete.js",
+    //"));",
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Zahtev/ZahtevDelete.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/PrikazZahteva.js"
+    },
+    // 15 -  Bundle 15 END
+
+    // 16 - Bundle 16 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/zahtevDropdown\").Include(", //16
+    //"~/Scripts/Zahtev/zahtevDropdown.js",
+    //"));",
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Zahtev/zahtevDropdown.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/zahtevDropdown.js"
+    },
+
+    // 16 -  Bundle 16 END
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/Zahtev/zahtevDropdown.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/zahtevDropdown.js"
+    },
+
+    // 17 - Bundle 17 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/lista_korisnika\").Include(", //17
+
+    //"~/Scripts/datatables.min.js",
+
+    //"~/Scripts/Korisnik/listaKorisnika.js",
+    //"~/Scripts/UI/select2.min.js",
+    //"~/Scripts/customDropdown.js",
+
+    //"~/Scripts/UI/labeli.js",
+
+    //"));",
+
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/datatables.min.js",
+        "wwwroot/Scripts/Korisnik/listaKorisnika.js",
+        "wwwroot/Scripts/UI/select2.min.js",
+        "wwwroot/Scripts/customDropdown.js",
+        "wwwroot/Scripts/UI/labeli.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/lista_korisnika.js"
+    },
+    // 17 -  Bundle 17 END
+
+    // 18 - Bundle 18 START
+
+    // OG
+    //"bundles.Add(new",
+    //"ScriptBundle(\"~/bundles/ui\").IncludeDirectory(", //18
+    //"~/Scripts/UI",
+    //"*.js",
+    //"true)",
+    //");",
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Scripts/UI/asc-desc-strelica.js",
+        "wwwroot/Scripts/UI/AutoHeightTextarea.js",
+        "wwwroot/Scripts/UI/breadCrumbsHardCode.js",
+        "wwwroot/Scripts/UI/hamburger.js",
+        "wwwroot/Scripts/UI/kontroleRespMaterijaliPrikaz.js",
+        "wwwroot/Scripts/UI/labeli.js",
+        "wwwroot/Scripts/UI/labeliEditPredmeta.js",
+        "wwwroot/Scripts/UI/lupauX.js",
+        "wwwroot/Scripts/UI/select2.min.js",
+        "wwwroot/Scripts/UI/sideBarSections.js",
+        "wwwroot/Scripts/UI/VracanjeID"
+      ],
+
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/ui.js"
+    },
+
+    // 18 -  Bundle 18 END
+
+    // 19 - Bundle 19 START
+
+    // OG
+
+    //"bundles.Add(new",
+    //"StyleBundle(\"~/Content/css\").Include(", //19
+    //"~/Content/css/reset.css",
+    //// "~/Content/bootstrap.css",
+    //"~/Content/css/bootstrap-flatly.css",
+    //"~/Content/css/site.css",
+    //"~/Content/css/datatables.min.css",
+    //"~/Content/css/izgled.css",
+    //"~/Content/css/stil.css",
+    //"~/Content/css/simplebar.css",
+    //"~/Content/css/detaljiKorisnika.css",
+    //"~/Content/css/izmeniKorisnika.css",
+    //"~/Content/css/naprednaPretraga.css",
+    //"~/Content/css/UrednikOdgovor.css",
+    //"));",
+
+    // NEW
+
+    {
+      "inputFiles": [
+        "wwwroot/Content/css/reset.css",
+        "wwwroot/Content/css/bootstrap-flatly.css",
+        "wwwroot/Content/css/site.css",
+        "wwwroot/Content/css/datatables.min.css",
+        "wwwroot/Content/css/izgled.css",
+        "wwwroot/Content/css/stil.css",
+        "wwwroot/Content/css/simplebar.css",
+        "wwwroot/Content/css/detaljiKorisnika.css",
+        "wwwroot/Content/css/izmeniKorisnika.css",
+        "wwwroot/Content/css/naprednaPretraga.css",
+        "wwwroot/Content/css/UrednikOdgovor.css"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/css.css"
+    },
+    // 19 -  Bundle 19 END
+
+
+    // 20 - Bundle 20 START
+
+    // OG
+    //"bundles.Add(new",
+    //"StyleBundle(\"~/Content/select2\").Include(", //20
+    //"~/Content/css/select2.min.css",
+    //"));"
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Content/css/select2.min.css"
+
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/select2.css"
+    },
+
+    // 20 -  Bundle 20 END
+
+    // 21 - Bundle 21 START
+
+    // OG
+    //"bundles.Add(new",
+    //"StyleBundle(\"~/Content/select2izgled\").Include(", //21
+    //"~/Content/css/select2izgled.css",
+    //"));",
+    //},
+    //}
+    // NEW
+    {
+      "inputFiles": [
+        "wwwroot/Content/css/select2izgled.min.css"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": false
+      },
+      "outputFileName": "wwwroot/bundles/select2izgled.css"
+    }
+    // 21 -  Bundle 21 END
+]
+
+
+/*** OLD BUNDLE CONFIG
+
+   public class BundleConfig
+    {
+        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(  //1
+                        "~/Scripts/jquery-{version}.js"));
+
+            // "~/Scripts/jquery.validate*"
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include( //2
+                "~/Scripts/jquery.validate.min.js"));
+
+            //dodato za upload fajla
+            //bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            //            "~/Scripts/hamburger.js",
+            //            "~/Scripts/VracanjeID.js",
+            //            "~/Scripts/loading.js"
+            //            ));
+
+            //bundles.Add(new ScriptBundle("~/bundles/jsFile").Include(
+            //            "~/Scripts/uploadNaziv.js"
+            //            ));
+            //bundles.Add(new ScriptBundle("~/bundles/smer").Include(
+            //            "~/Scripts/modalOpisSmer.js"
+            //            ));
+
+            //bundles.Add(new ScriptBundle("~/bundles/materijal").Include(
+            //            "~/Scripts/kontroleRespMaterijaliPrikaz.js",
+            //            "~/Scripts/brisanjeMaterijala.js",
+            //            "~/Scripts/jquery-ui.min.js"
+            //            ));
+
+            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include( //3
+                        "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include( //4
+                      "~/Scripts/bootstrap.js",
+                      //"~/Scripts/bootbox.js",
+                      "~/Scripts/respond.js"));
+
+            // OVO SU NOVO DODATI BUNDLOVI 
+
+            bundles.Add(new ScriptBundle("~/bundles/materijal_prikaz").Include( //5
+                       "~/Scripts/Materijal/brisanjeMaterijala.js",
+                       "~/Scripts/Materijal/filterMaterijal.js",
+                       "~/Scripts/Zahtev/zahtevUpgrade.js",
+                       "~/Scripts/customDropdown.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/upload_materijal").Include( //6
+            "~/Scripts/Materijal/uploadMaterijal.js",
+            "~/Scripts/Materijal/dropdownovi.js"
+            //"~/Scripts/Materijal/uploadMaterijal.js",
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/predmet_prikaz").Include( //7
+             "~/Scripts/Predmet/editPredmeta.js",
+             "~/Scripts/Predmet/modalOpisPredmet.js",
+             "~/Scripts/Predmet/validacijaEditPredmeta.js",
+             "~/Scripts/Predmet/validacijaNovogPredmeta.js",
+             "~/Scripts/Predmet/smerPoSkoli.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/novi_predmet").Include( //8
+             "~/Scripts/Predmet/validacijaNovogPredmeta.js",
+             "~/Scripts/Predmet/smerPoSkoli.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/novi_modul").Include( //9
+             "~/Scripts/Modul/validacijaNovogModula.js",
+            "~/Scripts//Modul/customDropdownModul.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/edit_modul").Include( //10
+             "~/Scripts/Modul/validacijaEditModula.js",
+            "~/Scripts//Modul/customDropdownModul.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/smer_prikaz").Include( //11
+                "~/Scripts/Smer/editSmera.js",
+                "~/Scripts/Smer/modalOpisSmer.js",
+                "~/Scripts/Smer/validacijaEditSmera.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/novi_smer").Include( //12
+             "~/Scripts/Smer/validacijaNovogSmera.js",
+             "~/Scripts/customDropdown.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/novi_korisnik").Include( //13
+             "~/Scripts/Korisnik/register.js",
+             "~/Scripts/Korisnik/customDropdownKorisnik.js",
+             "~/Scripts/Korisnik/customDropdown.js",
+              "~/Scripts/Korisnik/SakrijGodine.js"
+
+            ));
+            bundles.Add(new ScriptBundle("~/bundles/izmeni_korisnika").Include( //14
+           "~/Scripts/customDropdown.js",
+           "~/Scripts/Korisnik/izmeniKorisnika.js",
+           "~/Scripts/Korisnik/SakrijGodine.js"
+           ));
+
+            bundles.Add(new ScriptBundle("~/bundles/PrikazZahteva").Include( //15
+                "~/Scripts/Zahtev/ZahtevDelete.js"
+            ));
+            bundles.Add(new ScriptBundle("~/bundles/zahtevDropdown").Include( //16
+                "~/Scripts/Zahtev/zahtevDropdown.js"
+            ));
+            bundles.Add(new ScriptBundle("~/bundles/lista_korisnika").Include( //17
+
+             "~/Scripts/datatables.min.js",
+
+             "~/Scripts/Korisnik/listaKorisnika.js",
+             "~/Scripts/UI/select2.min.js",
+             "~/Scripts/customDropdown.js",
+
+             "~/Scripts/UI/labeli.js"
+
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ui").IncludeDirectory( //18
+                      "~/Scripts/UI", "*.js", true)
+                      );
+            // bundles.Add(new ScriptBundle("~/bundles/shared").IncludeDirectory(
+            //          "~/Scripts/Shared", "*.js", true)
+            //          );
+
+            // KRAJ NOVIH CISTIH
+  
+bundles.Add(new StyleBundle("~/Content/css").Include( //19
+"~/Content/css/reset.css",
+// "~/Content/bootstrap.css",
+"~/Content/css/bootstrap-flatly.css",
+  "~/Content/css/site.css",
+  "~/Content/css/datatables.min.css",
+  "~/Content/css/izgled.css",
+  "~/Content/css/stil.css",
+  "~/Content/css/simplebar.css",
+  "~/Content/css/detaljiKorisnika.css",
+  "~/Content/css/izmeniKorisnika.css",
+  "~/Content/css/naprednaPretraga.css",
+  "~/Content/css/UrednikOdgovor.css" )); 
+  
+ bundles.Add(new StyleBundle("~/Content/select2").Include( //20
+"~/Content/css/select2.min.css" ));
+  
+  bundles.Add(new StyleBundle("~/Content/select2izgled").Include( //21
+"~/Content/css/select2izgled.css" )); } } ***/

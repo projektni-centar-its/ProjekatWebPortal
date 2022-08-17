@@ -1,0 +1,40 @@
+﻿.modal-content
+{
+    position:relative !important;
+    margin-top:300px !important;
+    width: 460px;
+}
+.modal-title{
+    font-family: 'roboto-light';
+}
+.modal-content .labela {
+    font-family: 'roboto-light' !important;
+    font-weight: lighter;
+    margin-right: 60px;
+}
+.customSelect {
+    width: 100% !important;
+}
+
+.customLista {
+    width: 100% !important;
+}
+customDropdown{
+    vertical-align:middle;
+}
+
+.btnPretrazi {
+    float: left;
+    width: 20%;
+    border-bottom: none;
+    text-align: right;
+    background-image: none;
+    padding-left: 25px;
+    font-family: 'roboto-regular';
+    color: #e21b22;
+    margin-left: 33.3%;
+    padding-right: 10px;
+    font-size: 17px;
+    margin-top: 30px;
+  
+}
