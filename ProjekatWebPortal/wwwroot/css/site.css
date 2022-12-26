@@ -2,22 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /*CSS reset*/
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
-    background-color: #E0E1DC;
+    background-color: #fff;
 }
 
 /*#####-App layout-#####*/
 
 .bg-custom-1 {
-    background-color: #475B74;
+    background-color: #c42326;
     padding: 0 1em;
 }
 
@@ -42,13 +42,13 @@ i {
 .nav-item a,
 .nav-item a:visited {
     color: white;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #fff;
     padding: .7em 1em;
 }
 
     .nav-item a:hover {
-        color: white;
-        background-color: #7C8DA5;
+        background-color: #fff;
+        color: #c42326;
     }
 
 .nav-buttons {
@@ -56,8 +56,12 @@ i {
     margin: 0;
 }
 
+    .nav-buttons button:hover {
+        color: #c42326;
+    }
+
 .custom-sidebar {
-    border-top: 1px solid white;
+    border-top: 1px solid #fff;
     position: absolute;
     z-index: 1;
     width: 100%;

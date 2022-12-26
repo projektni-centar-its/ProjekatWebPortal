@@ -1,4 +1,4 @@
-﻿/* Functions for layout-sidebar */
+﻿/* #####-Functions for layout-sidebar-##### */
 
 function openNav() {
 
