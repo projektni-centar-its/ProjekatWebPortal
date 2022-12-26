@@ -1,4 +1,17 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿/* Functions for layout-sidebar */
 
-// Write your JavaScript code.
+function openNav() {
+
+    var myNav = document.getElementById("navbarToggleExternalContent");
+
+    myNav.style.display = myNav.style.display === 'none' ? '' : 'none';
+
+    document.getElementById("demo").onclick = closeNav;
+}
+
+function closeNav() {
+
+    document.getElementById("navbarToggleExternalContent").style.display = "none";
+
+    document.getElementById("demo").onclick = openNav;
+}
