@@ -18,6 +18,11 @@ namespace ProjekatWebPortal.Controllers
             return View();
         }
 
+        public IActionResult UserManager()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

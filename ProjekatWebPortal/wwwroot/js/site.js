@@ -1,17 +1,43 @@
-﻿/* #####-Functions for layout-sidebar-##### */
+﻿/* ---------------------------------------------------
+    Sidebar
+----------------------------------------------------- */
+$(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
 
-function openNav() {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
 
-    var myNav = document.getElementById("navbarToggleExternalContent");
+$(document).ready(function () {
+    $('.swipeArea').swipe({
+        swipeStatus: function (event, phase, direction, distance, duration, fingers) {
+            if ($(window).width() <= 768) {
+                if (phase == "move" && direction == "right") {
+                    $('#sidebar').addClass('active');
+                    $('#content').addClass('active');
+                    return false;
+                }
 
-    myNav.style.display = myNav.style.display === 'none' ? '' : 'none';
+                if (phase == "move" && direction == "left") {
+                    $('#sidebar').removeClass('active');
+                    $('#content').removeClass('active');
+                    return false;
+                }
+            }
+        },
+        excludedElements: "label,button,input,select,textarea"
+    });
+});
 
-    document.getElementById("demo").onclick = closeNav;
-}
+/* ---------------------------------------------------
+   DataTable
+----------------------------------------------------- */
 
-function closeNav() {
-
-    document.getElementById("navbarToggleExternalContent").style.display = "none";
-
-    document.getElementById("demo").onclick = openNav;
-}
+$(document).ready(function () {
+    $('#myTable').DataTable();
+});
