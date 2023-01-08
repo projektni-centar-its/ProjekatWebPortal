@@ -33,6 +33,11 @@ p {
     color: #FFF;
 }
 
+.logo {
+    width: 100%;
+    height: 100%;
+}
+
 /* ---------------------------------------------------
     NAVBAR
 ----------------------------------------------------- */
@@ -59,14 +64,23 @@ p {
     margin: 40px 0;
 }
 
+.navbar-header {
+    margin: auto 0;
+}
+
 .navbar-items {
     width: 100%;
     justify-content: space-between;
-    align-items:center;
+}
+
+.navbar-nav {
+    flex-direction: row;
+    margin: auto 0;
 }
 
 .navbar-brand {
     padding: 0;
+    width: 200px;
 }
 
 /* ---------------------------------------------------
@@ -105,11 +119,15 @@ p {
         display: block;
     }
 
-        .nav-btns a:hover,
-        #sidebar ul li a:hover {
-            color: #FFF;
-            background-color: #8b181a;
-        }
+.nav-btn {
+    margin: auto 0;
+}
+
+    .nav-btn:hover,
+    #sidebar ul li a:hover {
+        color: #FFF;
+        background-color: #8b181a;
+    }
 
 a, a:hover, a:focus {
     color: inherit;
@@ -175,9 +193,54 @@ a, a:hover, a:focus {
 
         .table-responsive table .table-btns {
             text-align: center;
-            min-width: 170px;
+            min-width: 220px;
             width: 10%;
         }
+
+/* ---------------------------------------------------
+    LOGIN PAGE
+----------------------------------------------------- */
+
+.signIn-container {
+    flex-direction: row;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    width: 90%;
+    max-width: 800px;
+    min-height: 300px;
+    margin: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.signIn-asside {
+    width: 40%;
+}
+
+.signIn-form {
+    width: 60%;
+    padding: 2em;
+    align-self: center;
+}
+
+.signIn-title {
+    text-align: center;
+    margin-bottom: .5em;
+    color: #c42326;
+    display: none;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -203,5 +266,17 @@ a, a:hover, a:focus {
     #sidebarCollapse {
         left: 10px;
         top: 8px;
+    }
+
+    .signIn-asside {
+        display: none;
+    }
+
+    .signIn-form {
+        width: 100%;
+    }
+
+    .signIn-title {
+        display: block;
     }
 }

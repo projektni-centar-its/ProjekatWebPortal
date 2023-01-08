@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -83,42 +86,48 @@
                             </button>
                         </div>
 
-                        <a class="navbar-brand" href="#">
-                            <h2 class="text-white">Web portal</h2>
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                            <img class="logo" src="~/logo/WebPortalLogo.jpg"/>
                         </a>
 
-                        <ul class="navbar-nav d-flex">
-                            <li class="nav-btns"><a asp-area="#" asp-controller="#" asp-action="#" class="btn btn-outline-light"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
-                            <!--<li class="nav-btns"><a asp-area="#" asp-controller="#" asp-action="#" class="btn btn-outline-light"><i class="bi bi-box-arrow-right"></i> Logout</a></li>-->
-                        </ul>
+                        <a href="#" class="btn btn-outline-light nav-btn"><i class="bi bi-box-arrow-right"></i> Odjavi se</a>
                     </div>
                 </div>
             </nav>
 
             <!-- MAIN BODY HERE -->
+            <div class="main-body">
+                <div class="col-md-12">
 
-            <div class="container">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
+                    <div class="container">
+                        <main role="main" class="pb-3">
+                            @RenderBody()
+                        </main>
+                    </div>
+                
+                </div>
             </div>
 
         </div>
     </div>
-    
+
+    <!--jQuery-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    
+    <!--Bootstrap-->
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <!--jQuery.mCustomScrollable-->
     <script src="~/lib/jquery/dist/jquery.mCustomScrollable.min.js"></script>
+    
     <!--Custom js scripts-->
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <!--jQuery.touchSwipe-->
     <script src="~/lib/jquery/dist/jquery.touchSwipe.min.js"></script>
+    
     <!--Data table-->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
-    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
