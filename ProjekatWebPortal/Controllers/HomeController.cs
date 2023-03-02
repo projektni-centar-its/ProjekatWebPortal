@@ -18,9 +18,29 @@ namespace ProjekatWebPortal.Controllers
             return View();
         }
 
+        public IActionResult UserManager()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Info()
+        {
+            return Content("Uspesno preusmereno na stranu info!");
+        }
+
+        public IActionResult Izmeni()
+        {
+            return Content("Uspesno preusmereno na stranu izmeni!");
+        }
+
+        public IActionResult Obrisi()
+        {
+            return Content("Uspesno preusmereno na stranu obrisi!");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,0 +1,141 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="row">
+    <div class="col">
+        <h2>User manager</h2>
+    </div>
+    <div class="col text-end">
+        <a href="#" class="btn btn-outline-danger"><i class="bi bi-plus-circle"></i> Dodaj korisnika</a>
+    </div>
+    <br>
+</div>
+<div class="row table-responsive">
+
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>david@gmail.com</td>
+                <td>David</td>
+                <td>Bozic</td>
+                <td class="table-btns">
+                    <a asp-controller="Home" asp-action="Info" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a asp-controller="Home" asp-action="Izmeni" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a asp-controller="Home" asp-action="Obrisi" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>tamara@gmail.com</td>
+                <td>Tamra</td>
+                <td>Lazic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>mia@gmail.com</td>
+                <td>Mia</td>
+                <td>Milenkovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>jelisaveta@gmail.com</td>
+                <td>Jelisaveta</td>
+                <td>Rankovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>jelisaveta@gmail.com</td>
+                <td>Jelisaveta</td>
+                <td>Gavrilovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>david@gmail.com</td>
+                <td>David</td>
+                <td>Bozic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>tamara@gmail.com</td>
+                <td>Tamra</td>
+                <td>Lazic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>jelisaveta@gmail.com</td>
+                <td>Jelisaveta</td>
+                <td>Rankovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>jelisaveta@gmail.com</td>
+                <td>Jelisaveta</td>
+                <td>Gavrilovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>jelisaveta@gmail.com</td>
+                <td>Jelisaveta</td>
+                <td>Rankovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+            <tr>
+                <td>jelisaveta@gmail.com</td>
+                <td>Jelisaveta</td>
+                <td>Gavrilovic</td>
+                <td class="table-btns">
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-info-circle-fill"></i> Info</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i> Izmeni</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Obriši</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

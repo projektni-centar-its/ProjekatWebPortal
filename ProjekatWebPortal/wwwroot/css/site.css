@@ -1,18 +1,282 @@
-html {
-  font-size: 14px;
+/* ---------------------------------------------------
+    Roboto font
+----------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* ---------------------------------------------------
+    CSS reset
+----------------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
+/* ---------------------------------------------------
+    General
+----------------------------------------------------- */
 
 body {
-  margin-bottom: 60px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #E0E1DC;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7rem;
+    color: #FFF;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------------------------------------------
+    NAVBAR
+----------------------------------------------------- */
+
+.navbar {
+    padding: 1em;
+    background: #c42326;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+.navbar-header {
+    margin: auto 0;
+}
+
+.navbar-items {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navbar-nav {
+    flex-direction: row;
+    margin: auto 0;
+}
+
+.navbar-brand {
+    padding: 0;
+    width: 200px;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+#sidebar {
+    min-width: 250px;
+    width: fit-content;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #c42326;
+    color: #FFF;
+    transition: all 0.3s;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar ul.components {
+        border-bottom: 1px solid #FFF;
+    }
+
+    #sidebar ul p {
+        color: #FFF;
+        padding: .5em;
+    }
+
+    #sidebar ul li a {
+        color: #FFF;
+        padding: .5em;
+        font-size: 1rem;
+        display: block;
+    }
+
+.nav-btn {
+    margin: auto 0;
+}
+
+    .nav-btn:hover,
+    #sidebar ul li a:hover {
+        color: #FFF;
+        background-color: #8b181a;
+    }
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    width: calc(100% - 250px);
+    padding: 30px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+    #content.active {
+        width: 100%;
+    }
+
+/* ---------------------------------------------------
+    MAIN BODY
+----------------------------------------------------- */
+
+.main-body {
+    width: 100%;
+    padding: 2em;
+    background: #FFF;
+    border: none;
+    border-radius: 0;
+    margin: 2em auto;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table-responsive {
+    overflow-x: auto; /* Horizontal */
+    margin-top: 1.5em;
+}
+
+    .table-responsive table {
+        margin: .5em 0;
+        min-width: 600px;
+        width: 100%;
+    }
+
+        .table-responsive table th, td {
+            padding: .5em;
+            width: 25%;
+        }
+
+        .table-responsive table th {
+            background-color: #c42326;
+            color: #FFF;
+        }
+
+        .table-responsive table td {
+            width: 25%;
+        }
+
+        .table-responsive table .table-btns {
+            text-align: center;
+            min-width: 220px;
+            width: 10%;
+        }
+
+/* ---------------------------------------------------
+    LOGIN PAGE
+----------------------------------------------------- */
+
+.signIn-container {
+    flex-direction: row;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    width: 90%;
+    max-width: 800px;
+    min-height: 300px;
+    margin: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.signIn-asside {
+    width: 40%;
+}
+
+.signIn-form {
+    width: 60%;
+    padding: 2em;
+    align-self: center;
+}
+
+.signIn-title {
+    text-align: center;
+    margin-bottom: .5em;
+    color: #c42326;
+    display: none;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+            width: 100%;
+        }
+
+    #content {
+        width: 100%;
+    }
+
+        #content.active {
+            width: calc(100% - 250px);
+        }
+
+    #sidebarCollapse {
+        left: 10px;
+        top: 8px;
+    }
+
+    .signIn-asside {
+        display: none;
+    }
+
+    .signIn-form {
+        width: 100%;
+    }
+
+    .signIn-title {
+        display: block;
+    }
 }
