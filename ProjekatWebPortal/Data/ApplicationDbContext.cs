@@ -11,6 +11,11 @@ namespace ProjekatWebPortal.Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PredmetPoSmeru>().HasKey(ps => new { ps.PredmetId, ps.SmerId });
+        }
+
         public DbSet<School> Schools { get; set; }
         public DbSet<Major> Majors { get; set; }
         public DbSet<OrganizationFile> OrganizationFiles { get; set; }
@@ -19,5 +24,10 @@ namespace ProjekatWebPortal.Data
         public DbSet<Material> Materials { get; set; }
         public DbSet<GlobalRequest> GlobalRequests { get; set; }
         public DbSet<News> News { get; set; }
+
+        public DbSet<Smer> Smers { get; set; }
+        public DbSet<Predmet> Predmets { get; set; }
+
+        public DbSet<PredmetPoSmeru> PredmetPoSmerus { get; set; }
     }
 }
