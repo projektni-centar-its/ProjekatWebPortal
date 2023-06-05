@@ -34,7 +34,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("SchoolsId");
 
-                    b.ToTable("MajorSchool");
+                    b.ToTable("MajorSchool", (string)null);
                 });
 
             modelBuilder.Entity("MajorSubject", b =>
@@ -49,7 +49,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("SubjectsId");
 
-                    b.ToTable("MajorSubject");
+                    b.ToTable("MajorSubject", (string)null);
                 });
 
             modelBuilder.Entity("MaterialModule", b =>
@@ -64,7 +64,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("ModulesId");
 
-                    b.ToTable("MaterialModule");
+                    b.ToTable("MaterialModule", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -319,7 +319,7 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.HasIndex("SubjectId")
                         .IsUnique();
 
-                    b.ToTable("GlobalRequests");
+                    b.ToTable("GlobalRequests", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.Major", b =>
@@ -344,7 +344,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Majors");
+                    b.ToTable("Majors", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.Material", b =>
@@ -388,7 +388,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("PostedById");
 
-                    b.ToTable("Materials");
+                    b.ToTable("Materials", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.Module", b =>
@@ -414,7 +414,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Modules");
+                    b.ToTable("Modules", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.News", b =>
@@ -445,7 +445,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("News", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.OrganizationFile", b =>
@@ -470,34 +470,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasIndex("MajorId");
 
-                    b.ToTable("OrganizationFiles");
-                });
-
-            modelBuilder.Entity("ProjekatWebPortal.Models.Predmet", b =>
-                {
-                    b.Property<int>("predmetId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("predmetId"), 1L, 1);
-
-                    b.Property<int>("Razred")
-                        .HasColumnType("int");
-
-                    b.Property<string>("predmetNaziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("predmetOpis")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("tipId")
-                        .HasColumnType("int");
-
-                    b.HasKey("predmetId");
-
-                    b.ToTable("Predmets");
+                    b.ToTable("OrganizationFiles", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.School", b =>
@@ -518,65 +491,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Schools");
-                });
-
-            modelBuilder.Entity("ProjekatWebPortal.Models.Smer", b =>
-                {
-                    b.Property<int>("smerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("smerId"), 1L, 1);
-
-                    b.Property<string>("fajlIts")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fajlMs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fajlNs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fileEkstenzijaIts")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fileEkstenzijaMs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fileEkstenzijaNs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fileMimeTypeIts")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fileMimeTypeMs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fileMimeTypeNs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nazivFajlIts")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nazivFajlMs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nazivFajlNs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("smerNaziv")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("smerOpis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("smerSkraceno")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("smerId");
-
-                    b.ToTable("Smers");
+                    b.ToTable("Schools", (string)null);
                 });
 
             modelBuilder.Entity("ProjekatWebPortal.Models.Subject", b =>
@@ -604,7 +519,7 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subjects");
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("MajorSchool", b =>

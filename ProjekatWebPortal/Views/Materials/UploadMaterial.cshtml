@@ -1,0 +1,39 @@
+﻿@model ProjekatWebPortal.ViewModels.MaterialUploadViewModel
+@{
+    //ViewBag.Title = "UploadMaterijal";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/Materialcss/dropdown.css" />
+<style>
+    .file {
+        visibility: hidden;
+        position: absolute;
+    }
+</style>
+
+<div id="sredina" class="sredina-upload-mat">
+    @if (!this.User.IsInRole("Profesor"))
+    {
+        <partial name="_UploadMaterialOthers"/>
+    }
+    else if (this.User.IsInRole("Profesor"))
+    {
+@*        Html.RenderPartial("_UploadMaterijalProfesor");
+*@    
+    }
+
+</div>
+
+@*STARO!*@
+@*@Scripts.Render("~/bundles/upload_materijal")
+@Scripts.Render("~/Scripts/Materijal/uploadNaziv.js")
+@Styles.Render("~/Content/css/Materijalcss/dropdown.css")*@
+<script src="~/Scripts/Material/uploadMaterijal.js"></script>
+<script src="~/Scripts/Material/dropdownovi.js"></script>
+<script src="~/Scripts/Material/uploadNaziv.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    setTimeout(function () {
+        $('.hideAfter').fadeOut('fast');
+    }, 5000);
+</script>

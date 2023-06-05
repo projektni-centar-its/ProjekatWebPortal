@@ -1,0 +1,88 @@
+﻿.btnDetalji {
+    
+    background-color: white;
+    color: red;
+    font-family: 'roboto-regular';
+    border-radius:4px;
+    
+    height:100%;
+    width:100%;
+    background-image:none;
+    
+    
+}
+
+    .btnDetalji:hover {
+        transition: 0.3s;
+        background-color: indianred;
+        color:white;
+        background-color:#ef474d;
+        
+    }
+
+label{
+    font-family: 'roboto-light' !important;
+    font-size: larger !important;
+}
+#listaKorisnika_info {
+    font-family: 'roboto-light' !important;
+    font-size: larger !important;
+}
+.form-control input-sm {
+    border-radius: 2px 2px 0 0 !important;
+    cursor: pointer !important;
+    padding: 14px 23px !important;
+    position: relative !important;
+    border-bottom: 1px solid #aaaaaa !important;
+    background-color: #fff !important;
+    border-bottom: #e3e3e3 !important;
+    background-color: #fafafa !important;
+    background-image: none;
+}
+#Filter {
+    float: right;
+    text-align: center;
+    background-color: transparent;
+    font-family: 'roboto-regular';
+    font-size: 13px;
+    color: #e21b22;
+    width:25% !important;
+    height:auto;
+    padding: 5px;
+    display: block;
+    clear: both;
+    margin-top:10px;
+    margin-bottom:10px;
+    border:none;
+    
+    border-radius:4px;
+}
+
+    #Filter:hover{
+        transition: 0.3s;
+        background-color: indianred;
+        color:white;
+        background-color:#ef474d;
+        
+    }
+.matDesignLabel .fokusiraniMatDesignLabel{
+    color: red !important;
+}
+.matDesignLabel {
+    padding-left: 0px !important;
+    padding-bottom: 5px !important;
+    margin-left: 15px !important;
+}
+#divPretraga{
+    width: 180px;
+    height: 70px;
+    position: relative;
+    float: right;
+}
+
+    input[type="search"]{
+        float: right;
+    }
+.izabraniUselectu{
+    background-color:white;
+}

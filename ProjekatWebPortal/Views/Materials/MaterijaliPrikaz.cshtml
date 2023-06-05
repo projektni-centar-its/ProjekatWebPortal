@@ -1,0 +1,97 @@
+﻿@*
+@model  ProjekatWebPortal.ViewModels.MaterijaliNaprednaPretragaViewModel
+@using ProjekatWebPortal.Helpers
+@{
+    ViewBag.Title = "MaterijaliPrikaz";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    @@media screen and (max-width: 600px) {
+        .nestaje {
+            display: none;
+        }
+    }
+</style>
+@if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
+{
+    <a id="novi-materijal" href="@Url.Action("UploadMaterijal", "Materijal")">
+        <img src="~/Content/img/upload.png" alt="Novi materijal">
+    </a>
+}
+<div id="sredina" class="nestaje">
+
+    <img id="banana" src="~/Content/img/potvrdaBrisanjaGIFGOTOV.gif" />
+
+    <div id="naprednaPretraga">
+        <label class="nasSelect2dropdown">Tip materijala</label>
+
+        @Html.DropDownListFor(m => m.tipMaterijala, new SelectList(Model.tipoviMaterijala, "tipMaterijalId", "nazivTipMaterijal"), new { @class = "select2materijali", @multiple = "multiple", @name = "materijali" })
+
+        <label class="nasSelect2dropdown">Format materijala</label>
+
+@*        @Html.Raw(Html.DropDownOpt(m => m.osiromaseniMaterijali, new SelectList(Model.osiromaseniMaterijali, "ekstenzija", "ekstenzija"), "OsiromaseniMaterijali"))
+
+        <select class="customDropdown datum" name="filterStarijeNovije">
+            <option id="rastuce">Od starijeg ka novijem</option>
+            <option id="opadajuce">Od novijeg ka starijem</option>
+        </select>
+
+        <img id="asc-desc" src="~/Content/img/sort.png" alt="asc/desc" />
+    </div>
+
+    @*Html.Partial("_Kartice", Model)
+
+    <div class="modal fade" id="myModal" role="dialog" style="opacity:1; background-color:rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Potvrda brisanja</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="~/Content/img/kantaPotvrdaBrisanjaModal.png" id="kantaModalSlika" alt="kanta" />
+                    <p>Da li ste sigurni da želite da obrišete <span></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Potvrdi</button>
+                    <button type="button" class="btn btn-default btn-sekundarni" data-dismiss="modal">Odustani</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="zahtevModal" role="dialog" style="opacity:1; background-color:rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Potvrda kreiranja zahteva</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" hidden="hidden" id="hiddenMaterijalId" />
+                    <label for="zahtevOpis">Opis zahteva</label>
+                    <input type="text" value="" id="zahtevOpis" />
+                    <label id="poruka" class="error"></label>
+                    <div class="zahtevDropdownWrap">
+                        <select class="zahtevDropdown" id="predmetiSelect">
+                            
+                        </select>
+                        <select class="zahtevDropdown" id="moduliSelect">
+                            
+                        </select>
+                    </div>
+
+                    <p>Da li ste sigurni da želite da kreirate zahtev <span></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="upgradeConfirm" type="button" class="btn btn-default">Potvrdi</button>
+                    <button type="button" class="btn btn-default btn-sekundarni" data-dismiss="modal">Odustani</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="snackbar"><span>Zahtev za materijal uspešno poslat!</span></div>
+</div>
+<script src="~/Scripts/prikaziLupicuPretraga.js"></script>*@
+@*@Scripts.Render("~/bundles/materijal_prikaz")
+@Styles.Render("~/Content/css/ZahtevZaGlobalni.css")*@

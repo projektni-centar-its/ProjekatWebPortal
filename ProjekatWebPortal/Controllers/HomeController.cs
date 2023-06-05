@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjekatWebPortal.Models;
 using System.Diagnostics;
 
@@ -17,7 +18,7 @@ namespace ProjekatWebPortal.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult UserManager()
         {
             return View();

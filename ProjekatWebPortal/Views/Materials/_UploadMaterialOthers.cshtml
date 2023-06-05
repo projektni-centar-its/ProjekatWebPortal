@@ -1,0 +1,31 @@
+﻿@model ProjekatWebPortal.ViewModels.MaterialUploadViewModel
+    <form asp-controller="Material" asp-action="UploadMaterial" method="post">
+
+    <div class="text-center text-success hideAfter"><h4 class="moje4">@ViewBag.SuccMsg</h4></div>
+
+    <input type="file" name="file" id="file" class="inputfile" />
+    <label for="file" id="izaberi-materijal"> <span id="filename"> <span> <img src="~/Content/img/upload2.png" alt="Izaberite Dokument"> Izaberite dokument...</span></span> </label>
+
+    <label class="matDesignLabel" for="materijalNaslov">Naslov</label>
+@*    @Html.TextBoxFor(m => m.Materijal.materijalNaslov, new { @name = "materijalNaslov" })
+*@
+    <input asp-for="Material.Name" name="materijalNaslov"/>
+    <label for="opis" class="matDesignLabel">Opis</label>
+
+@*    @Html.TextAreaFor(model => model.Materijal.materijalOpis, 2, 20, new { @id = @"materijalOpis", @name = "materijalOpis" })
+*@    
+    <textarea asp-for="Material.Description" id="materijalOpis" name ="materijalOpis"></textarea>
+        <div id="dropDownovi">
+        <div id="_predmetiNaSmeru">
+            @*@Html.EditorFor(m => m.PredmetPoSmeru, "_PredmetiNaSmeru", Model)*@
+            @*{Html.RenderPartial("_PredmetiNaSmeru", Model);}*@
+        </div>
+
+     @*   @Html.DropDownListFor(m => m.Materijal.tipMaterijalId, new SelectList(Model.tipoviMaterijala, "tipMaterijalId", "nazivTipMaterijal"), new { @class = "customDropdown" })
+        @Html.DropDownListFor(m => m.Materijal.namenaMaterijalaId, new SelectList(Model.nameneMaterijala, "namenaMaterijalaId", "namenaMaterijalaNaziv"), new { @class = "customDropdown", @selected = "selected" })*@
+    </div>
+
+    <button type="submit" id="postavi">
+        Dodati
+    </button>
+</form>

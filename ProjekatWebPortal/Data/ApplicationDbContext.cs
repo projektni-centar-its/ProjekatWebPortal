@@ -13,7 +13,8 @@ namespace ProjekatWebPortal.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PredmetPoSmeru>().HasKey(ps => new { ps.PredmetId, ps.SmerId });
+            //modelBuilder.Entity<PredmetPoSmeru>().HasKey(ps => new { ps.PredmetId, ps.SmerId });
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<School> Schools { get; set; }
@@ -25,9 +26,9 @@ namespace ProjekatWebPortal.Data
         public DbSet<GlobalRequest> GlobalRequests { get; set; }
         public DbSet<News> News { get; set; }
 
-        public DbSet<Smer> Smers { get; set; }
-        public DbSet<Predmet> Predmets { get; set; }
+        //public DbSet<Smer> Smers { get; set; }
+        //public DbSet<Predmet> Predmets { get; set; }
 
-        public DbSet<PredmetPoSmeru> PredmetPoSmerus { get; set; }
+        //public DbSet<PredmetPoSmeru> PredmetPoSmerus { get; set; }
     }
 }

@@ -11,18 +11,29 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+        .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDistributedMemoryCache();
 
-/*builder.Services.AddSession(options =>
+builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(1800);
+    options.IdleTimeout = TimeSpan.FromSeconds(600);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
-});*/
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = System.TimeSpan.FromSeconds(600);
+    options.SlidingExpiration = true;
+    options.LoginPath = "/Identity/Account/Login";
+});
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 var app = builder.Build();
 
@@ -38,7 +49,7 @@ else
     app.UseHsts();
 }
 
-//app.UseSession();
+app.UseSession();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
