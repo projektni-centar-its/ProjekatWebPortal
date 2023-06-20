@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjekatWebPortal.Data;
 using ProjekatWebPortal.Models;
 using ProjekatWebPortal.ViewModels;
 using System.Diagnostics;
+using System.Runtime.Intrinsics.Arm;
 
 namespace ProjekatWebPortal.Controllers
 {
@@ -11,12 +13,14 @@ namespace ProjekatWebPortal.Controllers
     {
         private readonly ILogger<MaterialsController> logger;
         private readonly ApplicationDbContext context;
+        private readonly UserManager<ApplicationUser> userManager;
 
 
-        public MaterialsController(ILogger<MaterialsController> _logger, ApplicationDbContext _context)
+        public MaterialsController(ILogger<MaterialsController> _logger, ApplicationDbContext _context, UserManager<ApplicationUser> _userManager)
         {
             logger = _logger;
             context = _context;
+            userManager = _userManager;
         }
 
 
@@ -43,19 +47,19 @@ namespace ProjekatWebPortal.Controllers
         /// <param name="id">Id modula za koji su materijali, ako je id = null, predpostavlja se da je dati materijal za profesore</param>
         /// <returns>Parcijalni pregled karticw</returns>
         [HttpGet]
-        public async Task<ActionResult> MaterijaliPrikaz(string sort, List<string> formati, List<int> tipovi, int number = 0, int? id = null)
+        public async Task<ActionResult> MaterialsShow(string sort, List<string> formati, List<int> tipovi, int number = 0, int? id = null)
         {
-            //List<OsiromaseniMaterijali> materijali;
+            List<OsiromaseniMaterijali> osiromaseniMaterijali;
 
-            //List<Material> materijali;
+            List<Material> materijali;
 
-            //MaterijaliNaprednaPretragaViewModel vm;
-            //int namenaID = 1;
+            MaterialsAdvancedSearchViewModel vm = new MaterialsAdvancedSearchViewModel();
+            int namenaID = 1;
             //if (id == null)
             //{
             //    if (User.IsInRole("Ucenik"))
             //    {
-            //        return new HttpStatusCodeResult(403);
+            //        return new NotFoundResult();
             //    }
             //    namenaID = 2;
             //}
@@ -74,7 +78,9 @@ namespace ProjekatWebPortal.Controllers
             //    }
             //}
 
-            //materijali = context.naprednaPretraga(formati, tipovi, id, namenaID).ToList();
+            osiromaseniMaterijali = naprednaPretraga(formati, tipovi, id, namenaID).ToList();
+
+            vm.osiromaseniMaterijali = osiromaseniMaterijali;
 
             //if (sort == "opadajuce")
             //{
@@ -115,7 +121,7 @@ namespace ProjekatWebPortal.Controllers
             //    return View("_Kartice", vm);
             //}
 
-            return View("MaterijaliPrikaz", null);
+            return View("MaterialsShow", vm);
         }
 
         //public JsonResult GetSmerovi(int skolaID)
@@ -242,104 +248,126 @@ namespace ProjekatWebPortal.Controllers
                 Subjects = context.Subjects.ToList(),
                 Modules = context.Modules.ToList()
             };
+            string currentUserId = userManager.GetUserId(HttpContext.User);
+            ApplicationUser currentUser = userManager.Users.Where(u => u.Id == currentUserId).First();
+            List<MajorSchool> smeroviPoSkoli;
+            try
+            {
+                var schoolId = viewModel.schools.ToList()[0].Id;
+                if (!this.User.IsInRole("SuperAdministrator"))
+                {
+                    School school = context.Schools.Where(s => s.Id == currentUser.SchoolId).First();
+                    if (school.Id > 0)
+                    {
+                        schoolId = school.Id;
+                    }
+                }
+                smeroviPoSkoli = context.MajorSchool.Where(ms => ms.SchoolId == schoolId).ToList();
 
-            //try
-            //{
-            //    var skId = viewModel.skole.ToList()[0].IdSkole;
-            //    if (!this.User.IsInRole("SuperAdministrator"))
-            //    {
-            //        SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
-            //        if (sk.IdSkole > 0)
-            //        {
-            //            skId = sk.IdSkole;
-            //        }
-            //    }
-            //    var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skId).Select(x => x.smerId).ToList();
-            //    viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
-            //    int id = viewModel.SmeroviPoSkolama.First().smerId;
-            //    var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == id).Select(c => c.predmetId).ToList();
-            //    viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
+                viewModel.majorsPerSchool = (from smPs in smeroviPoSkoli
+                                            select smPs.Major).ToList();
+                int id = viewModel.majorsPerSchool.First().Id;
 
-            //    int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
+               var predmetiposmeru = context.MajorSubject.Where(ms => ms.MajorId == id).Select(c => c.SubjectId).ToList();
+               viewModel.SubjectPerMajor = viewModel.Subjects.Where(x => predmetiposmeru.Contains(x.Id)).ToList();
 
-            //    viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
+                int idP = viewModel.SubjectPerMajor.FirstOrDefault().Id;
 
-            //    if (TempData["SuccMsg"] != null) { ViewBag.SuccMsg = TempData["SuccMsg"]; }
+                viewModel.ModulePerSubject = context.Modules.Where(mod => mod.SubjectId == idP).ToList();
 
-            //    return View("UploadMaterial", viewModel);
-            //}
-            //catch (ArgumentOutOfRangeException) { return new HttpNotFoundResult("Nema unetih smerova"); }
+                if (TempData["SuccMsg"] != null) { ViewBag.SuccMsg = TempData["SuccMsg"]; }
 
-            return View("UploadMaterial", viewModel);
+                return View("UploadMaterial", viewModel);
+            }
+            catch (ArgumentOutOfRangeException) {
+                    return new NotFoundResult();
+            }
         }
 
-        ////kod ove akcije treba dodati punjenje tabele namena materijala
-        ///// <summary>
-        ///// Dodaje materijal u bazu
-        ///// </summary>
-        ///// <param name="materijal">Materijal model.</param>
-        ///// <param name="file">Uploadovani fajl.</param>
-        ///// <param name="predmet">Predmet za koji je materijal.</param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //[Authorize(Roles = "SuperAdministrator,LokalniUrednik,Profesor")]
-        //public ActionResult UploadMaterijal(MaterijalModel materijal, HttpPostedFileBase file, int modulId, string idUser, string odobreno)
-        //{
-        //    // PredmetModel predmet = new PredmetModel();
-        //    //materijal.modulId = modulId;
+        //kod ove akcije treba dodati punjenje tabele namena materijala
+        /// <summary>
+        /// Dodaje materijal u bazu
+        /// </summary>
+        /// <param name="materijal">Materijal model.</param>
+        /// <param name="file">Uploadovani fajl.</param>
+        /// <param name="predmet">Predmet za koji je materijal.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(Roles = "SuperAdministrator, Administrator, LokalniUrednik, Profesor")]
+        public ActionResult UploadMaterial(Material material, IFormFile file, int moduleId, string idUser, string odobreno, int subjectId)
+        {
+            if (idUser != null)
+            {
+                material.idUser = idUser;
+            }
+            if (odobreno != null)
+            {
+                material.Approved = Boolean.Parse(odobreno);
+            }
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine("VALID!");
+                if (file != null)
+                {
 
-        //    context = new MaterijalContext();
+                    string nazivFajla = Path.GetFileName(file.FileName);
 
-        //    if (materijal.namenaMaterijalaId != 2)
-        //    {
-        //        context.Add<MaterijalPoModulu>(new MaterijalPoModulu
-        //        {
-        //            modulId = modulId,
-        //            materijalId = materijal.materijalId
-        //        });
-        //    }
-        //    if (idUser != null)
-        //    {
-        //        materijal.idUser = idUser;
-        //    }
-        //    if (odobreno != null)
-        //    {
-        //        materijal.odobreno = odobreno;
-        //    }
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (file != null)
-        //        {
-        //            string nazivFajla = Path.GetFileName(file.FileName);
+                    material.Timestamp = DateTime.Now;
+                    material.fileMimeType = file.ContentType;
+                    material.materialFileByteArray = new byte[file.Length];
+                    file.OpenReadStream().Read(material.materialFileByteArray, 0, (int)file.Length);
+                    material.Name = nazivFajla;
+                    material.materialExtension = Path.GetExtension(nazivFajla);
+                    material.Description = material.Description;
+                    material.Name = material.Name;
+                    material.IsDeleted = false;
 
-        //            materijal.datumMaterijali = DateTime.Now;
-        //            materijal.fileMimeType = file.ContentType;
-        //            materijal.materijalFile = new byte[file.ContentLength];
-        //            file.InputStream.Read(materijal.materijalFile, 0, file.ContentLength);
-        //            materijal.materijalNaziv = nazivFajla;
-        //            materijal.materijalEkstenzija = Path.GetExtension(nazivFajla);
-        //            materijal.materijalOpis = materijal.materijalOpis;
-        //            materijal.materijalNaslov = materijal.materijalNaslov;
-        //            materijal.Obrisan = false;
+                    context.Materials.Add(material);
 
-        //            context.Add<MaterijalModel>(materijal);
-        //            context.SaveChanges();
-        //        }
+                    // NA KRAJU
+                    // samo ucenici imaju module. Ako je ucenik, onda ce imati moduo
+                    //if ((int)material.MaterialPurpose != 2) // za ucenike // prof - 2, ucenici - 1
+                    //{
+                    //    //context.Add<MaterijalPoModulu>(new MaterijalPoModulu
+                    //    //{
+                    //    //    modulId = modulId,
+                    //    //    materijalId = materijal.materijalId
+                    //    //});
 
-        //        TempData["SuccMsg"] = "Uspešno ste postavili materijal!";
-        //        //ViewBag.Message = "Uspešno ste postavili materijal!";
-        //        return RedirectToAction("UploadMaterijal", "Materijal");
-        //        // return View("UploadMaterijal", ViewModel);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Message = "Postavljanje materijala nije uspelo!";
-        //        //TempData["ErrorMsg"] = "Postavljanje materijala nije uspelo!";
-        //        return RedirectToAction("UploadMaterijal", "Materijal");
+                    //    // return Content(moduleId.ToString());
+                    //    Module moduleToAdd = new Module()
+                    //    {
+                    //        Name = nazivFajla,
+                    //        Description = nazivFajla,
+                    //        SubjectId = subjectId,
+                    //    };
+                    //    moduleToAdd.Materials.Add(material);
+                    //    context.Modules.Add(moduleToAdd);
+                    //}
 
-        //        // return View("UploadMaterijal", ViewModel);
-        //    }
-        //}
+                    context.SaveChanges();
+
+                    ViewBag.Message = "Uspešno ste postavili materijal!";
+                    //ViewBag.Message = "Uspešno ste postavili materijal!";
+                    return RedirectToAction("UploadMaterial", "Materials");
+                    //return View("UploadMaterijal", ViewModel);
+                }
+                else
+                {
+                    ViewBag.Message = "Postavljanje materijala nije uspelo!";
+                    //TempData["ErrorMsg"] = "Postavljanje materijala nije uspelo!";
+                    return RedirectToAction("UploadMaterial", "Materials");
+                }
+
+               
+            }
+            else
+            {
+                ViewBag.Message = "Postavljanje materijala nije uspelo!";
+                //TempData["ErrorMsg"] = "Postavljanje materijala nije uspelo!";
+                return RedirectToAction("UploadMaterial", "Materials");
+            }
+        }
 
         //[HttpGet]
         //[Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
@@ -423,23 +451,23 @@ namespace ProjekatWebPortal.Controllers
         //    }
         //}*/
 
-        ///// <summary>
-        ///// Skida selektovani materijal
-        ///// </summary>
-        ///// <param name="id">Id materijala za download.</param>
-        ///// <returns></returns>
-        //public FileContentResult DownloadMaterijal(int id)
-        //{
-        //    MaterijalModel materijal = context.pronadjiMaterijalPoId(id);
-        //    if (materijal != null)
-        //    {
-        //        return File(materijal.materijalFile, materijal.fileMimeType, materijal.materijalNaziv);
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+        /// <summary>
+        /// Skida selektovani materijal
+        /// </summary>
+        /// <param name="id">Id materijala za download.</param>
+        /// <returns></returns>
+        public FileContentResult DownloadMaterial(int id)
+        {
+            Material materijal = context.Materials.Where(m=> (int)m.Id == (int)id).First();
+            if (materijal != null)
+            {
+                return File(materijal.materialFileByteArray, materijal.fileMimeType, materijal.Name);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         //public ActionResult Delete(int id)
         //{
@@ -502,6 +530,60 @@ namespace ProjekatWebPortal.Controllers
         //{
         //    materijali = context.materijali.Where(m => m.materijalEkstenzija == ekstenzija && m.tipMaterijalId == id).ToList();//scuffed
         //}
+
+
+        IQueryable<OsiromaseniMaterijali> naprednaPretraga(List<string> ekstenzije, List<int> tipoviMaterijalaIds, int? modulId, int namenaID)//Dodati parametre
+        {
+            // && (a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId)
+            //if (namenaID == 2)
+            //{
+                IQueryable<OsiromaseniMaterijali> materijali2;
+
+                materijali2 = from mat in context.Materials
+                              //where mat.MaterialPurpose == 2
+                              select new OsiromaseniMaterijali
+                              {
+                                  namenaID = 1,//(int)mat.MaterialPurpose,
+                                  materijalId = (int)mat.Id,
+                                  ekstenzija = mat.materialExtension,
+                                  materijalNaslov = mat.Name,
+                                  materijalOpis = mat.Description,
+                                  tipMaterijalaId = 1//(int)mat.MaterialType
+                              };
+
+                return materijali2;
+            //}
+
+        //    var queriable = context.poModulu(modulId);
+        //    queriable = poNameni(namenaID, queriable);
+
+        //    if (ekstenzije != null && tipoviMaterijalaIds != null)
+        //    {
+        //        queriable = queriable.
+        //           Where(a => ekstenzije.Any(s => a.ekstenzija.Contains(s)));
+
+        //        queriable = queriable.
+        //            Where(a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId.ToString().Contains(s.ToString())));
+
+        //        return queriable;
+        //    }
+        //    else if (ekstenzije == null && tipoviMaterijalaIds != null)
+        //    {
+        //        queriable = queriable.
+        //        Where(a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId.ToString().Contains(s.ToString())));
+
+        //        return queriable;
+        //    }
+        //    else if (ekstenzije != null && tipoviMaterijalaIds == null)
+        //    {
+        //        queriable = queriable.
+        //        Where(a => ekstenzije.Any(s => a.ekstenzija.Contains(s)));
+
+        //        return queriable;
+        //    }
+        //    else
+        //        return queriable;
+      }
 
     }
 }

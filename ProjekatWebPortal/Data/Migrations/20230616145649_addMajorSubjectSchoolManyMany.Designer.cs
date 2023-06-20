@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjekatWebPortal.Data;
 
@@ -11,9 +12,10 @@ using ProjekatWebPortal.Data;
 namespace ProjekatWebPortal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230616145649_addMajorSubjectSchoolManyMany")]
+    partial class addMajorSubjectSchoolManyMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -364,6 +366,7 @@ namespace ProjekatWebPortal.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FilePath")
@@ -372,13 +375,14 @@ namespace ProjekatWebPortal.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<short>("MaterialPurpose")
-                        .HasColumnType("smallint");
-
                     b.Property<short>("MaterialType")
                         .HasColumnType("smallint");
 
+                    b.Property<short>("MaterialUsage")
+                        .HasColumnType("smallint");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostedById")
@@ -386,18 +390,6 @@ namespace ProjekatWebPortal.Data.Migrations
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("fileMimeType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("idUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("materialExtension")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("materialFileByteArray")
-                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 

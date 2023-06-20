@@ -1,31 +1,33 @@
 ﻿@model ProjekatWebPortal.ViewModels.MaterialUploadViewModel
-    <form asp-controller="Material" asp-action="UploadMaterial" method="post">
 
-    <div class="text-center text-success hideAfter"><h4 class="moje4">@ViewBag.SuccMsg</h4></div>
-
-    <input type="file" name="file" id="file" class="inputfile" />
-    <label for="file" id="izaberi-materijal"> <span id="filename"> <span> <img src="~/Content/img/upload2.png" alt="Izaberite Dokument"> Izaberite dokument...</span></span> </label>
-
-    <label class="matDesignLabel" for="materijalNaslov">Naslov</label>
-@*    @Html.TextBoxFor(m => m.Materijal.materijalNaslov, new { @name = "materijalNaslov" })
-*@
-    <input asp-for="Material.Name" name="materijalNaslov"/>
-    <label for="opis" class="matDesignLabel">Opis</label>
-
-@*    @Html.TextAreaFor(model => model.Materijal.materijalOpis, 2, 20, new { @id = @"materijalOpis", @name = "materijalOpis" })
-*@    
-    <textarea asp-for="Material.Description" id="materijalOpis" name ="materijalOpis"></textarea>
-        <div id="dropDownovi">
-        <div id="_predmetiNaSmeru">
-            @*@Html.EditorFor(m => m.PredmetPoSmeru, "_PredmetiNaSmeru", Model)*@
-            @*{Html.RenderPartial("_PredmetiNaSmeru", Model);}*@
+@using (Html.BeginForm("UploadMaterial", "Materials", new { odobreno = "true" }, FormMethod.Post, false, new { @enctype = "multipart/form-data"}))
+{
+    <div class="text-center text-success hideAfter"><h4 class="moje4">@ViewBag.Message</h4></div>
+        <div style="width:50%;margin-left:auto;margin-right:auto">
+        <input type="file" name="file" id="file" class="inputfile" />
+        <label for="file" id="izaberi-materijal"> <span id="filename"> <span> <img src="~/Content/img/upload2.png" alt="Izaberite Dokument"> Izaberite dokument...</span></span> </label>
         </div>
+    <label class="matDesignLabel" for="materijalNaslov">Naslov</label>
+    <input asp-for="Material.Name" name="materijalNaslov"/>
 
-     @*   @Html.DropDownListFor(m => m.Materijal.tipMaterijalId, new SelectList(Model.tipoviMaterijala, "tipMaterijalId", "nazivTipMaterijal"), new { @class = "customDropdown" })
-        @Html.DropDownListFor(m => m.Materijal.namenaMaterijalaId, new SelectList(Model.nameneMaterijala, "namenaMaterijalaId", "namenaMaterijalaNaziv"), new { @class = "customDropdown", @selected = "selected" })*@
+    <label for="matDesc" class="matDesignLabel">Opis</label>
+    <textarea asp-for="Material.Description" id="matDesc" name="matDesc"></textarea>
+    <br/>
+    <div id="dropDownovi">
+        <div id="_predmetiNaSmeru">
+            <partial name="_SubjectsPerMajor" model="Model"/>
+        </div>
+        <div class="dropdown-wrap">
+        <label>Tip Materijala</label>
+            @Html.DropDownListFor(m => m.Material.MaterialType, new SelectList(Model.materialTypes,"typeMaterialId", "typeMaterialName"), new { @class = "izgledDropdown" })
+        </div>
+        <div class="dropdown-wrap">
+            <label>Namena Materijala</label>
+            @Html.DropDownListFor(m => m.Material.MaterialPurpose, new SelectList(Model.materialPurposes,"purposeMaterialId", "purposeMaterialName"), new { @class = "izgledDropdown", @selected = "selected" })
+        </div>
     </div>
 
     <button type="submit" id="postavi">
         Dodati
     </button>
-</form>
+    }

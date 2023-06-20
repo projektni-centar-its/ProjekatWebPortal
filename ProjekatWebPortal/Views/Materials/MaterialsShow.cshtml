@@ -1,5 +1,4 @@
-﻿@*
-@model  ProjekatWebPortal.ViewModels.MaterijaliNaprednaPretragaViewModel
+﻿@model  ProjekatWebPortal.ViewModels.MaterialsAdvancedSearchViewModel
 @using ProjekatWebPortal.Helpers
 @{
     ViewBag.Title = "MaterijaliPrikaz";
@@ -13,24 +12,24 @@
         }
     }
 </style>
-@if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
+@if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Professor"))
 {
     <a id="novi-materijal" href="@Url.Action("UploadMaterijal", "Materijal")">
         <img src="~/Content/img/upload.png" alt="Novi materijal">
     </a>
 }
-<div id="sredina" class="nestaje">
+<div id="sredina" class="nestaje" style="padding-left:0;padding-right:0">
 
     <img id="banana" src="~/Content/img/potvrdaBrisanjaGIFGOTOV.gif" />
 
-    <div id="naprednaPretraga">
+@*    <div id="naprednaPretraga">
         <label class="nasSelect2dropdown">Tip materijala</label>
 
         @Html.DropDownListFor(m => m.tipMaterijala, new SelectList(Model.tipoviMaterijala, "tipMaterijalId", "nazivTipMaterijal"), new { @class = "select2materijali", @multiple = "multiple", @name = "materijali" })
 
         <label class="nasSelect2dropdown">Format materijala</label>
 
-@*        @Html.Raw(Html.DropDownOpt(m => m.osiromaseniMaterijali, new SelectList(Model.osiromaseniMaterijali, "ekstenzija", "ekstenzija"), "OsiromaseniMaterijali"))
+    @Html.Raw(Html.DropDownOpt(m => m.osiromaseniMaterijali, new SelectList(Model.osiromaseniMaterijali, "ekstenzija", "ekstenzija"), "OsiromaseniMaterijali"))
 
         <select class="customDropdown datum" name="filterStarijeNovije">
             <option id="rastuce">Od starijeg ka novijem</option>
@@ -39,9 +38,9 @@
 
         <img id="asc-desc" src="~/Content/img/sort.png" alt="asc/desc" />
     </div>
-
-    @*Html.Partial("_Kartice", Model)
-
+    *@
+    <partial name="_Cards" model="Model" />
+    @*
     <div class="modal fade" id="myModal" role="dialog" style="opacity:1; background-color:rgba(0,0,0,0.5);">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -93,5 +92,6 @@
     <div id="snackbar"><span>Zahtev za materijal uspešno poslat!</span></div>
 </div>
 <script src="~/Scripts/prikaziLupicuPretraga.js"></script>*@
-@*@Scripts.Render("~/bundles/materijal_prikaz")
-@Styles.Render("~/Content/css/ZahtevZaGlobalni.css")*@
+@*Scripts.Render("~/bundles/materijal_prikaz")
+@Styles.Render("~/Content/css/ZahtevZaGlobalni.css")
+*@

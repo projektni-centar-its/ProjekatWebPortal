@@ -16,7 +16,6 @@ namespace ProjekatWebPortal.Models
         public string Shortcode { get; set; }
 
         public List<ApplicationUser> Students { get; set; }
-
-        public IList<Major> Majors { get; set; }
+        public ICollection<MajorSchool> MajorSchools { get; set; }
     }
 }

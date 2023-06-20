@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using ProjekatWebPortal.Models;
 
 namespace ProjekatWebPortal.Data
@@ -15,6 +16,28 @@ namespace ProjekatWebPortal.Data
         {
             //modelBuilder.Entity<PredmetPoSmeru>().HasKey(ps => new { ps.PredmetId, ps.SmerId });
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<MajorSchool>()
+            .HasKey(ms => new { ms.MajorId, ms.SchoolId });
+            modelBuilder.Entity<MajorSchool>()
+                .HasOne(ms => ms.Major)
+                .WithMany(ms => ms.MajorSchools)
+                .HasForeignKey(ms => ms.MajorId);
+            modelBuilder.Entity<MajorSchool>()
+                .HasOne(ms => ms.School)
+                .WithMany(ms => ms.MajorSchools)
+                .HasForeignKey(bc => bc.SchoolId);
+
+            modelBuilder.Entity<MajorSubject>()
+            .HasKey(ms => new { ms.MajorId, ms.SubjectId });
+            modelBuilder.Entity<MajorSubject>()
+                .HasOne(ms => ms.Major)
+                .WithMany(ms => ms.MajorSubject)
+                .HasForeignKey(ms => ms.MajorId);
+            modelBuilder.Entity<MajorSubject>()
+                .HasOne(ms => ms.Subject)
+                .WithMany(ms => ms.MajorSubject)
+                .HasForeignKey(bc => bc.SubjectId);
         }
 
         public DbSet<School> Schools { get; set; }
@@ -25,10 +48,9 @@ namespace ProjekatWebPortal.Data
         public DbSet<Material> Materials { get; set; }
         public DbSet<GlobalRequest> GlobalRequests { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<MajorSchool> MajorSchool { get; set; }
+        public DbSet<MajorSubject> MajorSubject { get; set; }
 
-        //public DbSet<Smer> Smers { get; set; }
-        //public DbSet<Predmet> Predmets { get; set; }
 
-        //public DbSet<PredmetPoSmeru> PredmetPoSmerus { get; set; }
     }
 }

@@ -20,14 +20,14 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(600);
+    options.IdleTimeout = TimeSpan.FromSeconds(6000);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.ExpireTimeSpan = System.TimeSpan.FromSeconds(600);
+    options.ExpireTimeSpan = System.TimeSpan.FromSeconds(6000);
     options.SlidingExpiration = true;
     options.LoginPath = "/Identity/Account/Login";
 });

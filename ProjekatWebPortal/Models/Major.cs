@@ -14,11 +14,9 @@ namespace ProjekatWebPortal.Models
         public string Description { get; set; }
         [Required]
         public string Shortcode { get; set; }
-
-        public IList<School> Schools { get; set; }
-
-        public IList<ApplicationUser> Students { get; set; }
-        public IList<OrganizationFile> OrganizationFiles { get; set; }
-        public IList<Subject> Subjects { get; set; }
+        public ICollection<MajorSchool> MajorSchools { get; set; }
+        //public IList<ApplicationUser> Students { get; set; }
+        //public IList<OrganizationFile> OrganizationFiles { get; set; }
+        public ICollection<MajorSubject> MajorSubject { get; set; }
     }
 }

@@ -11,15 +11,14 @@
     }
 </style>
 
-<div id="sredina" class="sredina-upload-mat">
-    @if (!this.User.IsInRole("Profesor"))
+<div class="sredina sredina-upload-mat">
+    @if (!this.User.IsInRole("Professor"))
     {
-        <partial name="_UploadMaterialOthers"/>
+        <partial name="_UploadMaterialOthers" model="Model"/>
     }
-    else if (this.User.IsInRole("Profesor"))
+    else if (this.User.IsInRole("Professor"))
     {
-@*        Html.RenderPartial("_UploadMaterijalProfesor");
-*@    
+        <partial name="_UploadMaterialProfessor" model="Model" />
     }
 
 </div>

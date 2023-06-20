@@ -1,0 +1,75 @@
+﻿@using ProjekatWebPortal.ViewModels;
+@using ProjekatWebPortal.Models;
+@using Microsoft.AspNetCore.Identity;
+@model MaterialsAdvancedSearchViewModel;
+@inject ProjekatWebPortal.Data.ApplicationDbContext context;
+
+@foreach (var osiromaseni in Model.osiromaseniMaterijali)
+{
+    //using (Html.BeginForm("Delete", "UploadMaterijal", new { id = materijal.materijalId }))
+    //{
+    //}
+    //var myModal = "myModal" + materijal.materijalId;
+    <div class="kartica" id=@osiromaseni.materijalId>
+        <div class="karticaTekts">
+            <h2>
+                @osiromaseni.materijalNaslov
+            </h2>
+
+            <p class="opis">
+                @osiromaseni.materijalOpis
+            </p>
+            <div class="kontrole">
+                <div class="triTackeKontrole" tabindex="1">
+                    <img src="~/Content/img/tri-tacke.png" alt="jos-opcija">
+                    <div class="dropdown-sadrzaj">
+                        @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik"))
+                        {
+                            <a class="dropdownOpcija" href="#">Obriši</a>
+                        }
+                        @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
+                        {
+                            @*if (!context.PostojiGlobalni(osiromaseni.materijalId))
+                            {
+                                <a class="dropdownOpcija upgrade" href="#">Postavi globalno</a>
+                            }*@
+                        }
+                        <a class="dropdownOpcija" href="#">Komentariši</a>
+                    </div>
+                </div>
+                @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik"))
+                {
+                    <a class="delete" href="#" data-toggle="modal" data-target="#myModal">
+                        @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
+                        @*@Url.Action("Delete", "UploadMaterijal", new { id = materijal.materijalId })*@
+                        <img class="brisi" src="~/Content/img/obrisi.png" alt="obrisi">
+                        <input type="hidden" id="hiddenModulId" value="@osiromaseni.modulId" />
+                    </a>
+
+                }
+                @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
+                {
+
+                    @*if (!context.PostojiGlobalni(osiromaseni.materijalId) && !context.PostojiGlobalniZahtev(osiromaseni.materijalId))
+                    {
+                        <a class="upgrade" href="#"><img style="width:12px;" src="~/Content/img/upgradeIco.png" /></a>;
+                    }*@
+                }
+                <a class="preuzmi" href="@Url.Action("DownloadMaterial", "Materials", new { id = osiromaseni.materijalId })">preuzmi</a>
+            </div>
+        </div>
+
+        @*<select class="js-example-basic-single" name="state" multiple="multiple">
+                <option value="AL">Alabama</option>
+
+                <option value="WY">Wyoming</option>
+            </select>*@
+
+        <div class="karticaFormat">
+            <a href="#">
+                <img class="imgPath" src="@Url.Content(osiromaseni.ImgPath)" alt="preuzmi-PDF">
+            </a>
+        </div>
+        @*@Html.HiddenFor(Model => osiromaseni.materijalId, new {@id ="nesto" })*@
+    </div>
+}

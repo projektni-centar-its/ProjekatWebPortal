@@ -20,5 +20,6 @@ namespace ProjekatWebPortal.Models
         public IList<Major> Majors { get; set; }
         public IList<Module> Modules { get; set; }
         public GlobalRequest GlobalRequest { get; set; }
+        public ICollection<MajorSubject> MajorSubject { get; set; }
     }
 }

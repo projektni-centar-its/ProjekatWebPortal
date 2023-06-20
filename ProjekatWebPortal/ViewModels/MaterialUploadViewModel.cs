@@ -19,8 +19,8 @@ namespace ProjekatWebPortal.ViewModels
         public List<School> schools { get; set; }
 
         public int schoolID { get; set; }
-
-        public List<Major> SmeroviPoSkolama { get; set; }
+        
+        public List<Major> majorsPerSchool { get; set; }
 
         public MaterialProfessorModel MaterialProfessorModel { get; set; }
 
@@ -63,7 +63,7 @@ namespace ProjekatWebPortal.ViewModels
         /// <value>
         /// The predmet po smeru.
         /// </value>
-        //public List<PredmetModel> PredmetPoSmeru { get; set; }
+        public List<Subject> SubjectPerMajor { get; set; }
 
         /// <summary>
         /// Gets or sets the moduli.
@@ -79,7 +79,7 @@ namespace ProjekatWebPortal.ViewModels
         /// <value>
         /// The modul po predmetu.
         /// </value>
-        //public List<ModulModel> ModulPoPredmetu { get; set; }
+        public List<Module> ModulePerSubject { get; set; }
 
         /// <summary>
         /// Gets or sets the smer identifier.
@@ -87,7 +87,7 @@ namespace ProjekatWebPortal.ViewModels
         /// <value>
         /// The smer identifier.
         /// </value>
-        public int smerId { get; set; }
+        public int majorId { get; set; }
 
         /// <summary>
         /// Gets or sets the predmet identifier.
@@ -95,7 +95,7 @@ namespace ProjekatWebPortal.ViewModels
         /// <value>
         /// The predmet identifier.
         /// </value>
-        public int predmetId { get; set; }
+        public int subjectId { get; set; }
 
         /// <summary>
         /// Gets or sets the predmet identifier.
@@ -103,6 +103,6 @@ namespace ProjekatWebPortal.ViewModels
         /// <value>
         /// The predmet identifier.
         /// </value>
-        public int modulId { get; set; }
+        public int moduleId { get; set; }
     }
 }

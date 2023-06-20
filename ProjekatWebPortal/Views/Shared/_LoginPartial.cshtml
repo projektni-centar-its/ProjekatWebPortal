@@ -4,12 +4,37 @@
 @inject Microsoft​.AspNetCore​.Http.IHttpContextAccessor HttpContextAccessor
 @{
     var session = HttpContextAccessor.HttpContext.Session;
+
+    var userType = "";
+
+    if (User.IsInRole("SuperAdministrator"))
+    {
+        userType = "Super Administrator";
+    }
+    if (User.IsInRole("Administrator"))
+    {
+        userType = "Administrator";
+    }
+    if (User.IsInRole("Professor"))
+    {
+        userType = "Profesor";
+    }
+    if (User.IsInRole("LocalEditor"))
+    {
+        userType = "Urednik";
+    }
+    if (User.IsInRole("Student"))
+    {
+        userType = "Učenik";
+    }
+
 }
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item" style="margin-right:15px">
             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Zdravo @User.Identity.Name !</a>
+            <h5 class="text-light" style="font-size:small">@userType</h5>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -19,11 +44,11 @@
 }
 else
 {
-    <li class="nav-item" style="margin-right:15px">
+    @*<li class="nav-item" style="margin-right:15px">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Register">
                 <button href="#" class="btn btn-outline-light nav-btn"><i class="bi bi-box-arrow-right"></i> Registracija</button>
             </form>
-    </li>
+    </li>*@
     <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Login">
                 <button href="#" class="btn btn-outline-light nav-btn"><i class="bi bi-box-arrow-right"></i> Prijava</button>

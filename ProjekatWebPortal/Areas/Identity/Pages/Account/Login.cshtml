@@ -19,39 +19,55 @@
 </head>
 <body>
 
-    <div class="signIn-container d-flex">
+    <div class="background-image-container">
+        <div class="signIn-container d-flex">
 
-		<div class="signIn-asside">
-			<img class="logo" src="~/logo/WebPortalSquare.jpg"/>
-		</div>
+            <div class="signIn-asside">
+@*                <h1 class="">Web portal</h1>
+*@            </div>
+            <img class="loginlogo" src="~/logo/WebPortalSquare.jpg" />
 
-		<div class="signIn-form">
-			<form id="account" method="post">
+            <div class="signIn-form login">
+                <h3>
+                    Prijavite se !
+                </h3>
 
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-				<h1 class="signIn-title">Web portal</h1>
-				
+@*                <p class="">Nisi registrovan?   <a href="#">Registruj se</a> </p>
+*@
 
-                <div class="mb-3">
-                    <input asp-for="Input.Email" class="form-control" placeholder="E-mail" autocomplete="email" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
+                <form id="account" method="post">
 
-                <div class="mb-5">
-                    <input asp-for="Input.Password" class="form-control" placeholder="Šifra" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-				
-				<div class="form-btns">
-					<a id="forgot-password" asp-page="./ForgotPassword" class="form-link">Zaboravili ste šifru?</a>
-					<button type="submit" class="btn btn-outline-danger form-btn">Prijavi se</button>
-				</div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-			</form>
-		</div>
 
-	</div>
 
+                    <div class="mb-3">
+                        <label for="e-mail">
+                            Korisnicko ime :
+                        </label>
+                        <input asp-for="Input.Email" class="form-control" placeholder="E-mail" autocomplete="email" aria-required="true" />
+
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="pasword">
+                            Sifra :
+                        </label>
+                        <input asp-for="Input.Password" class="form-control" placeholder="Šifra" autocomplete="current-password" aria-required="true" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-btns">
+                        <a id="forgot-password" asp-page="./ForgotPassword" class="form-link">Zaboravili ste šifru?</a>
+                        <button type="submit" class="btn btn-outline-danger form-btn">Prijavi se</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
 </body>
 
 @section Scripts {

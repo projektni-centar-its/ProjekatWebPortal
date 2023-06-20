@@ -194,17 +194,43 @@ a, a:hover, a:focus {
         .table-responsive table .table-btns {
             text-align: center;
             min-width: 220px;
-            width: 10%;
+            width: 30%;
         }
 
 /* ---------------------------------------------------
     LOGIN PAGE
 ----------------------------------------------------- */
+.background-image-container {
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-image: url("../Content/img/kanc.jpg");
+}
+
+.desno h3 {
+    font-weight: bold;
+    font-size: 22px;
+    color: #000;
+    margin-top: 40px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.login a {
+    text-decoration: underline;
+    color: #0000FF;
+}
+
+.login p {
+    color: black;
+}
 
 .signIn-container {
     flex-direction: row;
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #FFF;
@@ -213,11 +239,20 @@ a, a:hover, a:focus {
     min-height: 300px;
     margin: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 2vw;
 }
 
 .signIn-asside {
     width: 40%;
+    background-color: #C32325;
+    color: white;
+    border-radius: 2vw 0vw 0vw 2vw;
 }
+
+    .signIn-asside h1 {
+        margin-top: 1.5vw;
+        margin-left: 3vw;
+    }
 
 .signIn-form {
     width: 60%;
@@ -240,6 +275,15 @@ a, a:hover, a:focus {
 
 .form-link:hover {
     text-decoration: underline;
+}
+
+.loginlogo {
+    height: 20vw;
+    width: 20vw;
+    border-radius: 100%;
+    position: absolute;
+    top: 15%;
+    left: 2.5%;
 }
 
 /* ---------------------------------------------------

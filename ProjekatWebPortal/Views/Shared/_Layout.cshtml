@@ -45,7 +45,7 @@
 
 
 </head>
-<body id="body_container">
+<body id="body_container" style="background-color:#D5E5E2">
 
     <div >
         <!-- Sidebar -->
@@ -69,7 +69,7 @@
                     </a>
                 </li>
                 }
-                    @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("Administrator") || this.User.IsInRole("Profesor"))
+                    @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("Administrator") || this.User.IsInRole("Professor"))
                 {
                         <li class="nav-item">
                             <a class="nav-link" asp-area="#" asp-controller="Materials" asp-action="UploadMaterial">
@@ -79,17 +79,17 @@
                     </li>
                 }
                 <li class="nav-item">
-                        <a class="nav-link" asp-area="#" asp-controller="Materials" asp-action="MaterijaliPrikaz">
+                        <a class="nav-link" asp-area="#" asp-controller="Materials" asp-action="MaterialsShow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
                         Materijali
                     </a>
                 </li>
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" asp-area="#" asp-controller="#" asp-action="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                         Vesti
                     </a>
-                </li>
+                </li>*@
             </ul>
 
             <ul class="list-unstyled">

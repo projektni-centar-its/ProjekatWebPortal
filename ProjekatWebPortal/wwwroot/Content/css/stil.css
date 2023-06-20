@@ -418,11 +418,13 @@ div#sredina {
 
 
 
-    div#sredina::after {
-        content: "";
-        display: block;
-        clear: both;
-    }
+
+
+div#sredina::after {
+    content: "";
+    display: block;
+    clear: both;
+}
 
 .sredina-upload-mat {
     padding: 45px 45px 0 45px !important;
@@ -1381,7 +1383,8 @@ div.kartica-smer .kontrola-ikonica {
 /*CUSTOM DROPDOWNOVI POCETAK*/
 
 .customDropdown {
-    display: none;
+    display: block;
+    margin-top: 10px;
 }
 
 .customSelect {
